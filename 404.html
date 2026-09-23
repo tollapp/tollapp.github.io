@@ -12,21 +12,25 @@
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-  <div class="page">
-    <header class="bar">
-      <a class="brand" href="/"><img src="/assets/mark.svg" alt=""><span class="wordmark">Toll</span></a>
+  <header class="bar">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Toll, home"><img src="/assets/mark.svg" alt=""></a>
       <nav class="nav" aria-label="Pages">
-        <a href="/support/">Support</a>
+        <a class="hide-small" href="/support/">Support</a>
         <a href="/privacy/">Privacy</a>
+        <a class="button small" href="/#get">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg>
+          iOS
+        </a>
       </nav>
-    </header>
-    <main>
-      <div class="hero">
-        <p class="eyebrow">Not found</p>
-        <h1>This page is not here.</h1>
-        <p class="lede">The address may have changed. The <a href="/">home page</a>, <a href="/support/">support</a> and the <a href="/privacy/">privacy policy</a> are.</p>
-      </div>
-    </main>
-  </div>
+    </div>
+  </header>
+  <main class="wrap narrow">
+    <div class="hero">
+      <p class="eyebrow">Not found</p>
+      <h1>This page<br><span class="gold-text">is not here.</span></h1>
+      <p class="lede">The address may have changed. The <a href="/">home page</a>, <a href="/support/">support</a> and the <a href="/privacy/">privacy policy</a> are.</p>
+    </div>
+  </main>
 </body>
 </html>

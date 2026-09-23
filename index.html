@@ -6,69 +6,139 @@
   <title>Toll · Gate opens at proof</title>
   <meta name="description" content="Toll keeps the apps you choose behind a gate until you prove today's habit with a photo from the live camera, checked on your iPhone.">
   <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" content="Toll · Gate opens at proof">
+  <meta property="og:description" content="The apps you choose wait behind a gate until you prove today's habit with a photo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tollapp.github.io/">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to the page</a>
-  <div class="page">
-    <header class="bar">
-      <a class="brand" href="./"><img src="assets/mark.svg" alt=""><span class="wordmark">Toll</span></a>
+
+  <header class="bar">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="Toll, home"><img src="assets/mark.svg" alt=""></a>
       <nav class="nav" aria-label="Pages">
-        <a href="support/">Support</a>
+        <a class="hide-small" href="support/">Support</a>
         <a href="privacy/">Privacy</a>
+        <a class="button small" href="#get">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg>
+          iOS
+        </a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main id="main">
-      <div class="hero">
-        <img class="mark" src="assets/mark.svg" alt="">
-        <p class="eyebrow" style="margin-top: 18px;">Toll for iPhone</p>
-        <h1>Gate opens at proof.</h1>
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Habits with proof, for iPhone</p>
+        <h1>Gate opens<br><span class="gold-text">at proof.</span></h1>
         <p class="lede">Toll keeps the apps you choose behind a gate until you prove today's habit with a photo from the live camera, checked on your iPhone.</p>
-      </div>
-
-      <div class="section">
-        <div class="card">
-          <ul class="rows">
-            <li>
-              <h3>Pick the apps and the habits</h3>
-              <p>The gym, meals, study, a run, a walk with the dog, or a habit of your own. While one is due, the apps you chose are shielded.</p>
-            </li>
-            <li>
-              <h3>Prove it with a photo</h3>
-              <p>From the live camera, checked on the iPhone by Apple's on-device models. Photos are never stored and never leave the phone.</p>
-            </li>
-            <li>
-              <h3>The gate opens for the day</h3>
-              <p>Streaks, ranks and a daily score for the days you keep. Focus sessions shut the gate on demand; two rest days a month keep the streak.</p>
-            </li>
-          </ul>
-        </div>
-        <div class="card">
-          <ul class="rows">
-            <li>
-              <h3>Strict by choice, never a trap</h3>
-              <p>Gate lock and Hard lock are off until you turn them on, and each has a way out that needs no one. Deleting Toll removes every shield.</p>
-            </li>
-            <li>
-              <h3>No account, no tracking</h3>
-              <p>No sign-up, no server of its own, no ads, no analytics. Your history stays on your iPhone and in your own iCloud.</p>
-            </li>
-          </ul>
+        <div class="actions">
+          <a class="button" href="#get">Coming to iOS</a>
+          <a class="button glass" href="#how">How it works</a>
         </div>
       </div>
-    </main>
+      <div class="showcase" aria-label="Toll on iPhone">
+        <div class="phone side"><img src="assets/screens/score.webp" width="600" height="1304" alt="Toll Score: 75 on a gold arc, made of the day's proofs, focus time and week." loading="lazy"></div>
+        <div class="phone center"><img src="assets/screens/streak.webp" width="600" height="1304" alt="A live flame over a 12 day streak, this week's days marked with flames."></div>
+        <div class="phone side"><img src="assets/screens/profile.webp" width="600" height="1304" alt="The profile: a Platinum rank medallion in a laurel, focus time, day streak and the ranks ahead." loading="lazy"></div>
+      </div>
+    </section>
 
-    <footer>
-      <span>Toll</span>
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label">How it works</p>
+          <h2>Three steps, every day.</h2>
+        </div>
+        <div class="steps">
+          <div class="card step">
+            <h3>Pick the apps and the habits</h3>
+            <p>The gym, meals, study, a run, a walk with the dog, or a habit of your own. While one is due, the apps you chose are shielded.</p>
+          </div>
+          <div class="card step">
+            <h3>Prove it with a photo</h3>
+            <p>From the live camera, checked on your iPhone in a moment. A desk with your notes, your plate, the gym.</p>
+          </div>
+          <div class="card step">
+            <h3>The gate opens for the day</h3>
+            <p>The apps come back until tomorrow, and the streak grows by a day.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label">What you get</p>
+          <h2>Strict where it counts. Kind where it matters.</h2>
+        </div>
+        <div class="grid">
+          <div class="card feature">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
+            <h3>The apps wait</h3>
+            <p>Shields from Apple's Screen Time, not tricks. The apps stay on your Home Screen and open the moment the gate does.</p>
+          </div>
+          <div class="card feature">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.7l1.3-2h5l1.3 2h1.7A2.5 2.5 0 0 1 20 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+            <h3>Proof, on the phone</h3>
+            <p>Apple's on-device models check the photo. It is never stored and never leaves your iPhone.</p>
+          </div>
+          <div class="card feature">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c3.6 0 6.5-2.6 6.5-6.3 0-3.5-2.4-5.6-3.6-8.7-.4 1.9-1.4 3-2.6 3.4.3-2.8-.6-5.4-2.8-7.4-.2 3.8-4 6.4-4 11 0 4.1 2.9 8 6.5 8z"/><path d="M12 21c-1.6 0-2.8-1.3-2.8-3 0-2 1.6-3 2.3-4.6.8 1.5 3.3 2.5 3.3 4.7 0 1.6-1.2 2.9-2.8 2.9z"/></svg></div>
+            <h3>Streaks, ranks, a score</h3>
+            <p>A streak that burns, seven ranks from Iron to Obsidian, and Toll Score for how the day went.</p>
+          </div>
+          <div class="card feature">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M18.5 6.5l1.5-1.5"/></svg></div>
+            <h3>Focus sessions</h3>
+            <p>Shut the gate for 15 minutes to 3 hours, proof or not. It opens by itself at the end, even with Toll closed.</p>
+          </div>
+          <div class="card feature">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg></div>
+            <h3>Strict by choice</h3>
+            <p>Gate lock and Hard lock are off until you turn them on, and each has a way out that needs no one. Two rest days a month keep the streak.</p>
+          </div>
+          <div class="card feature">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.7-1.4A4.5 4.5 0 0 0 7 18.5z"/><path d="M10 14l1.6 1.6L14.5 12.5"/></svg></div>
+            <h3>No account, no tracking</h3>
+            <p>No sign-up, no server of its own, no ads, no analytics. Your history lives on your iPhone and in your own iCloud.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="get">
+      <div class="wrap">
+        <div class="card get">
+          <img class="mark" src="assets/mark.svg" alt="">
+          <h2>Coming to the App Store.</h2>
+          <p class="lede">Toll is in its last checks before release. It runs on iPhone with iOS 26.1 or later.</p>
+          <div class="actions">
+            <span class="soon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg>
+              Toll for iOS, soon
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span class="sign"><img src="assets/mark.svg" alt="">© 2026 Toll</span>
       <nav aria-label="More">
         <a href="support/">Support</a>
         <a href="privacy/">Privacy</a>
         <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
       </nav>
-    </footer>
-  </div>
+    </div>
+  </footer>
 </body>
 </html>
