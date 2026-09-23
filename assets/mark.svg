@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="192 192 640 640" role="img" aria-label="Toll">
+  <!-- The Toll mark, open: the post and the barrier arm raised 22 degrees (TollGlyphShape). -->
+  <defs>
+    <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="0" y1="253" x2="0" y2="771">
+      <stop offset="0" stop-color="#f5cc73"/>
+      <stop offset="0.5" stop-color="#e8b04b"/>
+      <stop offset="1" stop-color="#b88529"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#gold)" stroke-width="112" stroke-linecap="round">
+    <path d="M512 406.677 L512 714.677"/>
+    <path d="M271.02 504.04 L752.98 309.32"/>
+  </g>
+</svg>
