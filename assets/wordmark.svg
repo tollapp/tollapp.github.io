@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 558 300" width="558" height="300">
+  <title>Toll</title>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round">
+    <line x1="31.75" y1="80.4" x2="236.5" y2="31.4" stroke-width="53.2"/>
+    <line x1="110.5" y1="75.0" x2="110.5" y2="258.0" stroke-width="70"/>
+    <line x1="428.5" y1="58.0" x2="428.5" y2="258.0" stroke-width="70"/>
+    <line x1="516.0" y1="58.0" x2="516.0" y2="258.0" stroke-width="70"/>
+  </g>
+  <path d="M 165.50 195.00 a 108.0 99.5 0 1 0 216.0 0 a 108.0 99.5 0 1 0 -216.0 0 Z M 231.00 195.50 a 42.0 42.0 0 1 0 84.0 0 a 42.0 42.0 0 1 0 -84.0 0 Z" fill="#FFFFFF" fill-rule="evenodd"/>
+</svg>

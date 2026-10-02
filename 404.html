@@ -4,35 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Not found · Toll</title>
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
   <meta name="robots" content="noindex">
   <!-- GitHub Pages serves this page at any missing address, so every link here starts at the site root
        (the site is the tollapp.github.io user site). -->
   <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-  <header class="bar">
-    <div class="wrap">
-      <div class="island glass">
-      <a class="brand" href="/" aria-label="Toll, home"><img src="/assets/mark.svg" alt=""></a>
+  <a class="skip" href="#main">Skip to the page</a>
+
+  <header class="top">
+    <div class="top-bar">
+      <a class="brand" href="/" aria-label="Toll, home"><img src="/assets/wordmark.svg" width="558" height="300" alt=""></a>
       <nav class="nav" aria-label="Pages">
-        <a class="hide-small" href="/support/">Support</a>
-        <a href="/privacy/">Privacy</a>
-        <a class="button small" href="/#get">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg>
-          iOS
-        </a>
+        <a class="wide" href="/#how">How it works</a>
+        <a class="wide" href="/#plans">Toll Pro</a>
+        <a href="/support/">Support</a>
+        <a class="narrow-hide" href="/privacy/">Privacy</a>
+        <a class="status" href="/#get">Coming soon</a>
       </nav>
-      </div>
     </div>
   </header>
-  <main class="wrap narrow">
-    <div class="hero">
-      <p class="eyebrow">Not found</p>
-      <h1>This page<br><span class="gold-text">is not here.</span></h1>
-      <p class="lede">The address may have changed. The <a href="/">home page</a>, <a href="/support/">support</a> and the <a href="/privacy/">privacy policy</a> are.</p>
+
+  <main id="main" class="lost">
+    <div class="toplight"></div>
+    <div class="door">
+      <img src="/assets/door-640.webp" width="640" height="638" alt="">
+    </div>
+    <div class="wrap lost-copy">
+      <h1>This page is not here.</h1>
+      <p class="lede">The address may have changed. The <a class="nowrap" href="/">home page</a>, <a href="/support/">support</a> and the <a class="nowrap" href="/privacy/">privacy policy</a> are.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/">Back to Toll</a>
+        <a class="btn btn-glass" href="/support/">Support</a>
+      </div>
     </div>
   </main>
+
+  <footer class="foot">
+    <div class="wrap narrow">
+      <span class="sign"><img src="/assets/wordmark.svg" width="558" height="300" alt="Toll">© 2026 Toll</span>
+      <nav aria-label="More">
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

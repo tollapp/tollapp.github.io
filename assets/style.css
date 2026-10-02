@@ -1,634 +1,1093 @@
-/* Toll's website: the app's look (DESIGN.md v3) on the web. Near black lit from the top, ink
-   text, one gold accent, frosted glass, rounded bold display type. System fonts only and no
-   scripts, so the pages load nothing from anyone else. */
+/* Toll's site: Direction C "Dawn", dark only, in Liquid Glass.
+   Black ground lifted by C's violet top light, the app's own doorway of dawn light as the hero,
+   the app's real screens, glass for the bar, the buttons, the cards and the plans.
+   No web fonts, no scripts. Without backdrop-filter the glass is C's flat card (the end of the file). */
 
 :root {
   color-scheme: dark;
-  --background: #0a0a0a;
-  --ink: #f2f0eb;
-  --secondary: rgba(242, 240, 235, 0.66);
-  --tertiary: rgba(242, 240, 235, 0.42);
-  --gold: #e8b04b;
-  --gold-light: #f5cc73;
-  --gold-pale: #fbe6b4;
-  --gold-deep: #b88529;
-  --frost-top: rgba(255, 255, 255, 0.075);
-  --frost-bottom: rgba(255, 255, 255, 0.035);
-  --rim: rgba(255, 255, 255, 0.14);
-  --hairline: rgba(255, 255, 255, 0.08);
-  --display: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --wide: 1120px;
-  --narrow: 720px;
+  --ground: #000000;
+  --card: #0E0E10;
+  --stroke: #1E1E22;
+  --ink: #FFFFFF;
+  --ink-2: #9E9E9E;
+  --ink-read: #ADADB2;
+  --capsule: #1C1C1E;
+  --done: #7EE0B5;
+  --dawn: #E8C3F0;
+  --lilac: #C8B6FF;
+  --rose: #FFB8CF;
+  --peach: #FFD6B0;
+  --top-peak: #3A2E4A;
+  --top-mid: #1C1724;
+
+  --wrap: 1120px;
+  --gutter: 16px;
+  --radius: 28px;
+  --gap: clamp(72px, 10vw, 136px);
+  --ease: cubic-bezier(0.2, 0.75, 0.2, 1);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* The glass: a dark, clear tint (C's near-black over black, the light's own colour over a
+     light), a sheen that is brightest along the top, a blur that bends the light behind it, a fine
+     bright rim brightest on the top edge (.glass::before) and a soft shade at the foot. */
+  --glass-tint: rgba(11, 10, 14, 0.42);
+  --glass-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.026) 64px, rgba(255, 255, 255, 0.024));
+  --glass-blur: blur(24px) saturate(165%);
+  --glass-foot: inset 0 -22px 34px -26px rgba(0, 0, 0, 0.85);
+  --glass-drop: 0 26px 50px -30px rgba(0, 0, 0, 0.95);
+
+  /* A grain of light noise, a few levels at most, laid on the lights so their slow gradients never
+     band. Drawn by the browser from this tiny SVG; nothing is downloaded. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-* { box-sizing: border-box; }
+@media (min-width: 768px) {
+  :root { --gutter: 32px; }
+}
 
-/* The ground: black everywhere, so pulling past the top or the bottom never shows a different
-   color, and the light is a layer fixed to the window, so it stays put while the page moves. */
+*, *::before, *::after { box-sizing: border-box; }
+
 html {
-  background: var(--background);
-  overscroll-behavior-y: none;
+  background: var(--ground);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 96px;
 }
+
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--text);
-  font-size: 17px;
-  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  background: var(--ground);
   color: var(--ink);
-  background: transparent;
+  font: 400 17px/1.5 var(--font);
+  letter-spacing: -0.008em;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 80% 55% at 50% -12%, rgba(232, 176, 75, 0.20), rgba(232, 176, 75, 0.05) 45%, transparent 72%),
-    radial-gradient(ellipse 60% 40% at 50% 115%, rgba(232, 176, 75, 0.06), transparent 70%),
-    var(--background);
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
-a {
-  color: var(--gold-light);
-  text-decoration: none;
-}
-.prose a, .lede a, .policy a, details a, .card p a {
-  border-bottom: 1px solid rgba(245, 204, 115, 0.35);
-}
-.prose a:hover, .lede a:hover, .policy a:hover, details a:hover, .card p a:hover { border-bottom-color: var(--gold-light); }
-a:focus-visible, .button:focus-visible, summary:focus-visible {
-  outline: 2px solid var(--gold);
+/* main is the stacking context every light sits in, under all of the page's content. It clips
+   them at its own edges, so a light never adds scroll below the footer (clip makes no scroll box,
+   so the sticky contents on the privacy page still stick). */
+main { flex: 1 0 auto; position: relative; isolation: isolate; overflow: clip; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: var(--ink); text-decoration-color: rgba(255, 255, 255, 0.35); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
   border-radius: 8px;
 }
 
-.skip {
-  position: absolute;
-  left: -9999px;
-}
-.skip:focus {
-  left: 16px;
-  top: 12px;
-  padding: 8px 14px;
-  background: var(--ink);
-  color: var(--background);
-  border-radius: 999px;
-  z-index: 20;
-}
+h1, h2, h3, h4 { margin: 0; font-weight: 700; color: var(--ink); text-wrap: balance; }
+p, li { text-wrap: pretty; }
+p { margin: 0; }
+
+.nowrap { white-space: nowrap; }
 
 .wrap {
   width: 100%;
-  max-width: var(--wide);
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--gutter);
 }
-.wrap.narrow { max-width: var(--narrow); }
 
-/* Liquid Glass, the way iOS 26 draws it: the page behind is blurred, brightened and saturated;
-   a rim of light catches the top edge and fades round the sides; a soft sheen sits in the upper
-   left; the glass floats on its own shadow. Pure CSS, so it costs nothing to load. */
+.narrow { --wrap: 760px; }
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -80px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip:focus { top: 16px; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- The glass ---------- */
+
 .glass {
   position: relative;
-  isolation: isolate;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045)),
-    rgba(16, 14, 11, 0.38);
-  -webkit-backdrop-filter: blur(22px) saturate(190%) brightness(1.08);
-  backdrop-filter: blur(22px) saturate(190%) brightness(1.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.30),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-    inset 0 -16px 24px -20px rgba(255, 255, 255, 0.28),
-    0 14px 36px rgba(0, 0, 0, 0.40),
-    0 2px 8px rgba(0, 0, 0, 0.22);
+  background: var(--glass-sheen), var(--glass-tint);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-foot), var(--glass-drop);
 }
-.glass::before {
+
+/* Clearer glass where it sits over a light worth seeing: the steps and Toll Pro. */
+.glass-clear {
+  --glass-tint: rgba(11, 10, 14, 0.2);
+  --glass-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02) 64px, rgba(255, 255, 255, 0.016));
+  --rim: 0.4;
+}
+
+/* The rim: one hairline round the panel, bright on the top edge, fading down the sides, a little
+   brighter again at the foot, as light catches the edge of a pane. */
+.glass::before,
+.top-bar::before,
+.btn-glass::before,
+.tag::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, var(--rim, 0.32)) 0,
+    rgba(255, 255, 255, 0.1) 56px,
+    rgba(255, 255, 255, 0.045) 45%,
+    rgba(255, 255, 255, 0.04) 80%,
+    rgba(255, 255, 255, 0.09) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.card {
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+/* ---------- The light ---------- */
+
+/* C's top light: a wide ellipse from above the top centre, #3A2E4A at the peak, #1C1724 a little
+   lower, black further down. It lights the head of each page. */
+.toplight {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 900px;
+  pointer-events: none;
+  z-index: -1;
+  /* It ends clear, not black, so a light further down can reach up under it without a line. */
+  --shape: 1240px 820px at 50% -170px;
+  background: radial-gradient(var(--shape), var(--top-peak) 0%, var(--top-mid) 36%, rgba(0, 0, 0, 0) 78%);
+}
+
+@media (max-width: 767px) {
+  .toplight { height: 680px; --shape: 720px 640px at 50% -150px; }
+}
+
+/* The same light further down, where there is no top edge to hang it from: over a section's head,
+   and behind the glass that needs light to bend. A wide, low ellipse that fades to nothing inside
+   its own box on every side, so it never draws a line, and spans the page's width so it never needs
+   clipping. It sits under everything in main. */
+.light {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--at, -40px) - var(--h, 1100px) / 2);
+  height: var(--h, 1100px);
+  z-index: -1;
+  pointer-events: none;
+  --shape: ellipse max(var(--rx, 58%), 360px) 50% at 50% 50%;
+  background: radial-gradient(var(--shape),
+    rgba(58, 46, 74, var(--a, 0.5)) 0%,
+    rgba(28, 23, 36, calc(var(--a, 0.5) * 0.66)) 40%,
+    rgba(28, 23, 36, calc(var(--a, 0.5) * 0.22)) 70%,
+    rgba(0, 0, 0, 0) 100%);
+}
+
+/* The grain, only where the light is: masked by the light's own shape. */
+.light::after,
+.toplight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grain);
+  opacity: 0.028;
+  -webkit-mask-image: radial-gradient(var(--shape), #000 0%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0) 90%);
+  mask-image: radial-gradient(var(--shape), #000 0%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0) 90%);
+}
+
+/* ---------- The bar: a floating glass capsule, like the app's tab bar ---------- */
+
+.top {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  pointer-events: none;
+}
+
+/* Dark Liquid Glass: it takes a bright backdrop down (brightness) before tinting it, so the doorway
+   and a white headline passing under it never wash the words out. */
+.top-bar {
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 10px 0 22px;
+  border-radius: 999px;
+  background:
+    radial-gradient(56% 150% at 50% -62%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    rgba(14, 14, 18, 0.5);
+  -webkit-backdrop-filter: blur(28px) saturate(160%) brightness(0.62);
+  backdrop-filter: blur(28px) saturate(160%) brightness(0.62);
+  box-shadow: inset 0 -14px 22px -18px rgba(0, 0, 0, 0.8), 0 18px 40px -20px rgba(0, 0, 0, 0.9);
+  --rim: 0.4;
+}
+
+.brand { display: inline-flex; align-items: center; padding: 8px 6px 8px 0; border-radius: 12px; }
+.brand img { height: 22px; width: auto; }
+
+.nav { margin-left: auto; display: flex; align-items: center; gap: 2px; }
+.nav a {
+  position: relative;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s, background-color 0.25s;
+}
+.nav a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.08); }
+.nav a[aria-current="page"] { color: var(--ink); background: rgba(255, 255, 255, 0.11); }
+/* The page you are on carries a short flat bar of the dawn accent, as the app marks the selected tab. */
+.nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 14px;
+  height: 2px;
+  margin-left: -7px;
+  border-radius: 1px;
+  background: var(--dawn);
+}
+/* "Coming soon" is the bar's status, not a button: white words after a hairline, linking to the
+   page's close, where it says what it means. */
+.nav .status { margin-left: 13px; color: var(--ink); font-weight: 600; }
+.nav .status::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  width: 1px;
+  height: 18px;
+  margin-top: -9px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 719px) {
+  .nav .wide { display: none; }
+  .nav a { padding: 10px 9px; }
+  .nav .status { margin-left: 9px; }
+  .nav .status::before { left: -5px; }
+  .top-bar { padding-left: 18px; padding-right: 8px; }
+}
+
+@media (max-width: 359px) {
+  .nav .narrow-hide { display: none; }
+}
+
+/* ---------- Buttons: white capsule for the main action, glass for the rest ---------- */
+
+@property --hx {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 54px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font: 600 17px/1 var(--font);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.35s var(--ease), background-color 0.3s, box-shadow 0.35s var(--ease);
+}
+
+/* A highlight that glides across the button under the pointer. */
+.btn::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(120% 90% at 18% -10%, rgba(255, 255, 255, 0.20), transparent 55%);
+  background: radial-gradient(110px 80px at var(--hx) 0%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 72%);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease), --hx 0.9s var(--ease);
 }
-.glass::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  pointer-events: none;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.08) 38%, rgba(255, 255, 255, 0.03) 62%, rgba(255, 255, 255, 0.22));
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-}
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass { background: rgba(28, 26, 22, 0.92); }
-}
+.btn:hover::after { opacity: 1; --hx: 100%; }
+.btn:active { transform: scale(0.98); }
 
-/* The bar: a glass capsule floating over the top of the page, the mark alone at the left, the
-   pages and the iOS button at the right. The page scrolls under it. */
-.bar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  padding-top: 12px;
-  pointer-events: none;
+.btn-primary {
+  background: var(--ink);
+  color: #000;
+  box-shadow: inset 0 -12px 18px -14px rgba(0, 0, 0, 0.35);
 }
-.island {
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  height: 58px;
-  padding: 0 7px 0 12px;
-  border-radius: 999px;
+.btn-primary::after {
+  background: radial-gradient(110px 80px at var(--hx) 100%, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 72%);
 }
-.brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-}
-.brand img {
-  width: 28px;
-  height: 28px;
-  display: block;
-  filter: drop-shadow(0 0 10px rgba(232, 176, 75, 0.45));
-}
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 15px;
-  font-weight: 500;
-}
-.nav a:not(.button) {
-  color: var(--secondary);
-  padding: 8px 14px;
-  border-radius: 999px;
-  transition: color 0.2s ease, background-color 0.2s ease;
-}
-.nav a:not(.button):hover { color: var(--ink); background: rgba(255, 255, 255, 0.06); }
-.nav a[aria-current="page"] {
+.btn-primary:hover { transform: translateY(-1px); box-shadow: inset 0 -12px 18px -16px rgba(0, 0, 0, 0.2); }
+
+.btn-glass {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.10);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05)), rgba(26, 26, 32, 0.4);
+  -webkit-backdrop-filter: blur(24px) saturate(160%) brightness(0.7);
+  backdrop-filter: blur(24px) saturate(160%) brightness(0.7);
+  box-shadow: inset 0 -12px 20px -16px rgba(0, 0, 0, 0.8);
+  --rim: 0.42;
 }
-.nav .button { margin-left: 6px; }
+.btn-glass:hover { transform: translateY(-1px); background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07)), rgba(32, 32, 38, 0.44); }
 
-/* Buttons: the app's white glass capsule (bright, with a highlight along the top) and the clear
-   one (.button.glass). */
-.button {
+/* A quiet glass capsule beside a title: the features Toll Pro brings. */
+.tag {
   position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 46px;
-  padding: 0 22px;
+  flex: none;
+  height: 26px;
+  padding: 0 11px;
   border-radius: 999px;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--background);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(234, 231, 224, 0.92));
-  box-shadow:
-    inset 0 1px 0 #ffffff,
-    inset 0 -2px 6px rgba(0, 0, 0, 0.10),
-    0 10px 28px rgba(0, 0, 0, 0.38),
-    0 0 0 0.5px rgba(255, 255, 255, 0.6);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-  white-space: nowrap;
-}
-.button:hover {
-  transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 #fff, inset 0 -2px 6px rgba(0, 0, 0, 0.10), 0 14px 34px rgba(0, 0, 0, 0.46), 0 0 0 0.5px rgba(255, 255, 255, 0.7);
-}
-.button:active { transform: scale(0.97); }
-.button.small { min-height: 44px; padding: 0 16px; font-size: 15px; }
-.button.glass {
-  color: var(--ink);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045)), rgba(16, 14, 11, 0.38);
-}
-.button.glass:hover { background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.07)), rgba(16, 14, 11, 0.38); }
-.button svg { width: 16px; height: 16px; flex: none; }
-
-/* Type */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 18px;
-  padding: 6px 12px;
-  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #D9D9DE;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.2px;
-  color: var(--gold-pale);
-  background: rgba(232, 176, 75, 0.1);
-  box-shadow: inset 0 0 0 1px rgba(232, 176, 75, 0.22);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  --rim: 0.3;
 }
-.eyebrow::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 8px var(--gold);
-}
-h1, h2, h3 { font-family: var(--display); font-weight: 700; }
-h1 {
-  margin: 0;
-  font-size: clamp(40px, 8.4vw, 76px);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-}
-.gold-text {
-  background: linear-gradient(180deg, var(--gold-pale), var(--gold) 55%, var(--gold-deep));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+
+/* ---------- Type ---------- */
+
 .lede {
-  margin: 20px auto 0;
-  max-width: 560px;
-  color: var(--secondary);
-  font-size: clamp(17px, 2.2vw, 20px);
-  line-height: 1.5;
+  color: var(--ink-2);
+  font-size: clamp(18px, 1.55vw, 21px);
+  line-height: 1.45;
+  letter-spacing: -0.012em;
 }
-h2 {
-  margin: 0;
-  font-size: clamp(28px, 4.6vw, 44px);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-}
-h3 {
-  margin: 0 0 6px;
-  font-size: 19px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-}
-p { margin: 0 0 12px; }
-p:last-child { margin-bottom: 0; }
-.secondary { color: var(--secondary); }
-.label {
-  margin: 0 0 12px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: var(--tertiary);
-}
+.lede a { color: var(--ink); }
 
-/* Home: the hero */
+/* Each section's head sits on its own top edge; the space above it is the section before. Its
+   light (.light, centred just above the head by default) reaches up into that space. */
+.section { position: relative; padding: 0 0 var(--gap); }
+
+.head { max-width: 780px; margin: 0 auto clamp(36px, 5vw, 60px); text-align: center; }
+.head h2 { font-size: clamp(36px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.026em; }
+.head p { margin: 18px auto 0; max-width: 580px; text-wrap: balance; }
+
+/* ---------- Hero: the doorway of dawn light, cut from the app's Home ---------- */
+
 .hero {
-  text-align: center;
-  padding: clamp(56px, 10vw, 104px) 0 0;
-}
-.hero .actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 32px;
-}
-
-/* Three screens of the app in phones, the middle one forward. */
-/* The row runs the full width of the window with room above, so the phones' shadows and glow are
-   never cut by its edges; the bottom fades into the page. */
-.showcase {
+  --door: min(620px, 116vw);
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(12px, 3vw, 36px);
-  width: 100%;
-  margin-top: calc(clamp(48px, 8vw, 80px) - 120px);
-  padding: 120px 0 8px;
+  isolation: isolate;
   overflow: hidden;
-  mask-image: linear-gradient(to bottom, #000 76%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent);
-}
-.phone {
-  flex: none;
-  width: clamp(200px, 26vw, 290px);
-  padding: 9px;
-  border-radius: clamp(34px, 4.4vw, 48px);
-  background: linear-gradient(160deg, #3a3a3a, #141414 40%, #0e0e0e);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    0 40px 80px rgba(0, 0, 0, 0.6);
-}
-.phone img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 600 / 1304;
-  border-radius: clamp(26px, 3.6vw, 40px);
-  background: #0a0a0a;
-}
-.phone.side { opacity: 0.9; transform: translateY(8%) scale(0.92); }
-.phone.center {
-  z-index: 1;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 40px 90px rgba(0, 0, 0, 0.65),
-    0 0 90px rgba(232, 176, 75, 0.16);
-}
-
-/* Sections */
-.section { padding: clamp(64px, 10vw, 112px) 0 0; }
-.section-head {
-  max-width: 620px;
-  margin: 0 auto clamp(28px, 5vw, 44px);
+  padding: 64px 0 clamp(72px, 9vw, 120px);
   text-align: center;
 }
-.section-head .lede { margin-top: 14px; }
-
-/* Blocks on the document pages: a label and a card, closer together than home's sections. */
-.block { margin-top: 40px; }
-.block .label { margin-left: 4px; }
-
-/* Frosted cards with the rim lit from the top. */
-.card {
-  position: relative;
-  padding: 24px;
-  border-radius: 28px;
-  background: linear-gradient(var(--frost-top), var(--frost-bottom));
-  box-shadow: inset 0 1px 0 var(--rim), inset 0 0 0 1px var(--hairline), 0 20px 50px rgba(0, 0, 0, 0.25);
+/* On a laptop the doorway follows the window's height, so the line, the lede and both actions
+   land in the first view even on a short screen. */
+@media (min-width: 768px) {
+  .hero { --door: min(620px, 116vw, 54svh); }
 }
-.card::after {
+
+.door {
+  width: var(--door);
+  margin: 0 auto;
+  position: relative;
+  z-index: -1;
+  /* The doorway is light: it adds to the top light behind it rather than covering it, so no box or
+     darker column ever shows round the arch. */
+  mix-blend-mode: screen;
+  mix-blend-mode: plus-lighter;
+}
+.door img { width: 100%; height: auto; }
+
+.hero-copy {
+  /* The line sits on the doorway's floor glow, as the app's caption does. */
+  margin-top: calc(var(--door-lift, -0.2) * var(--door));
+}
+.hero h1 {
+  font-size: clamp(46px, 6.6vw, 86px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+@media (min-width: 768px) {
+  .hero h1 { font-size: clamp(46px, min(6.6vw, 9.4svh), 86px); }
+}
+.hero .lede { max-width: 600px; margin: 24px auto 0; color: #ABABAB; text-wrap: balance; }
+
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 36px; }
+
+@media (max-width: 767px) {
+  .hero { padding-top: 70px; }
+  .hero-copy { --door-lift: -0.24; }
+  .hero h1 { font-size: clamp(42px, 12vw, 56px); }
+  .hero .lede { font-size: 18px; }
+  .actions .btn { flex: 1 1 100%; max-width: 360px; }
+}
+
+/* ---------- Phones: the app's real screens in a clean frame ---------- */
+
+.phone { width: 100%; height: auto; }
+
+/* ---------- How it works: each screen stands in front of its glass step ---------- */
+
+.light-floor { --at: 1220px; --h: 1100px; --a: 0.5; }
+
+.steps {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  gap: 24px;
+  max-width: 420px;
+}
+.step { --pw: min(262px, 70vw); display: flex; flex-direction: column; align-items: center; padding-top: 36px; }
+.step .phone {
+  position: relative;
+  z-index: 2;
+  width: var(--pw);
+  filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.7));
+}
+/* On a phone the glass frames the whole screen, an even margin round it, the words below. */
+.step .card {
+  flex: 1 1 auto;
+  width: 100%;
+  margin-top: calc(-1 * var(--pw) * 2.0867 - 36px);
+  padding: calc(var(--pw) * 2.0867 + 36px + 26px) 24px 26px;
+}
+.step-num {
+  display: block;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+}
+.step h3 { font-size: 22px; line-height: 1.2; letter-spacing: -0.02em; }
+.step p { margin-top: 8px; color: var(--ink-2); }
+
+/* On a tablet each screen stands at the left of its step, the glass reaching behind it. */
+@media (min-width: 640px) and (max-width: 899px) {
+  .steps { max-width: 680px; gap: 28px; }
+  .step { flex-direction: row; align-items: center; padding-top: 0; }
+  .step .phone { flex: none; width: 236px; }
+  .step .card { margin: 0 0 0 -72px; padding: 30px 30px 30px 100px; align-self: center; }
+  .light-floor { --at: 1300px; --h: 1900px; }
+}
+
+/* On a wide screen the screen stands in front of its step, the glass rising behind its foot. */
+@media (min-width: 900px) {
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: none; }
+  .step { padding-top: 0; }
+  .step .phone { width: 272px; }
+  .step .card { margin-top: -112px; padding: 140px 26px 28px; }
+  /* Centred behind the step cards, so the clear glass shows it. */
+  .light-floor { --at: 1010px; --h: 1000px; --a: 0.8; --rx: 52%; }
+}
+
+/* ---------- The day after a miss: open and shut, side by side ---------- */
+
+.gate-grid { display: grid; gap: 48px; align-items: center; }
+.gate-copy h2 { font-size: clamp(36px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.026em; }
+.gate-copy .lede { margin-top: 20px; }
+.gate-copy .quiet { margin-top: 18px; color: var(--ink-2); }
+
+.rest { display: flex; align-items: center; gap: 22px; margin-top: 32px; padding: 24px 26px; }
+.rest .big { flex: none; font-size: 76px; line-height: 0.9; margin: 0; }
+.rest h3 { font-size: 19px; line-height: 1.25; letter-spacing: -0.018em; }
+.rest p:not(.big) { margin-top: 6px; color: var(--ink-2); font-size: 15px; line-height: 1.45; }
+
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 3vw, 28px); align-items: start; }
+.pair figure { margin: 0; }
+.pair figure:last-child { margin-top: clamp(28px, 6vw, 64px); }
+.pair .phone { max-width: 272px; margin: 0 auto; }
+.pair figcaption {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--ink-2);
+  font-size: 15px;
+}
+.pair figcaption strong { display: block; color: var(--ink); font-size: 17px; font-weight: 600; }
+
+@media (min-width: 900px) {
+  .gate-grid { grid-template-columns: 5fr 7fr; gap: 64px; }
+  .gate-section > .light { --at: 300px; --h: 1300px; }
+}
+@media (max-width: 899px) {
+  .gate-copy { max-width: 600px; margin: 0 auto; }
+  .gate-copy .say { text-align: center; }
+  .rest { text-align: left; }
+}
+
+/* ---------- Strict where it counts: a grid of glass tiles ---------- */
+
+/* A quieter light over this head, and the light carried down behind the tiles instead. */
+#features > .light:first-child { --a: 0.3; --at: 40px; }
+.light-bento { --at: 32%; --h: 1500px; --a: 0.46; --rx: 62%; }
+.light-bento-2 { --at: 76%; --h: 1400px; --a: 0.4; --rx: 62%; }
+@media (max-width: 639px) {
+  .light-bento, .light-bento-2 { --h: 2300px; }
+}
+
+.bento { display: grid; gap: 16px; }
+
+.tile {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.tile h3 { font-size: 24px; line-height: 1.15; letter-spacing: -0.022em; }
+.tile-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.tile > p, .tile .text > p { margin-top: 10px; color: var(--ink-2); }
+
+/* A screen rising from the tile's foot, every one cut the same way: the screen is kept to the same
+   share of its height in every tile and fades out evenly over its last stretch, so no row is ever
+   sliced by an edge and the fades sit level across a row. */
+.shot {
+  --w: 262px;
+  --keep: 0.86;
+  --fade: 104px;
+  width: var(--w);
+  height: calc(var(--w) * 2.0867 * var(--keep));
+  flex: none;
+  margin: auto auto 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 calc(100% - var(--fade)), rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(#000 calc(100% - var(--fade)), rgba(0, 0, 0, 0) 100%);
+}
+.tile-photo { padding-bottom: 0; }
+.tile-photo > p { margin-bottom: 28px; }
+
+/* Schedules and time limits: the words at the top, two figures at the foot, the screen beside. */
+.figures { display: flex; flex-wrap: wrap; gap: 22px 36px; margin-top: 26px; }
+.figures p { display: flex; flex-direction: column; max-width: 220px; }
+.figures b {
+  font-size: clamp(44px, 4.2vw, 58px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.figures span { margin-top: 8px; color: var(--ink-2); font-size: 15px; line-height: 1.4; }
+.tile-rules .shot { margin-top: 32px; }
+/* On a phone the three figures share one row, a compact line of numbers above the screen. */
+@media (max-width: 639px) {
+  .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .figures b { font-size: 30px; letter-spacing: -0.03em; }
+  .figures span { margin-top: 6px; font-size: 13px; line-height: 1.35; }
+}
+
+/* The short tiles: the locks that need no screen. */
+.tile-note > p { font-size: 17px; }
+
+/* On a phone the tiles stack, so three of the screens keep only their top, faded out over the next
+   group's label: Sessions down to Start, the score down to its three parts, the gate screen down
+   to its preview. */
+@media (max-width: 639px) {
+  .tile-sessions .shot { --keep: 0.57; --fade: 38px; }
+  .tile-score .shot { --keep: 0.553; --fade: 38px; }
+  .tile-words .shot { --keep: 0.564; --fade: 38px; }
+  .tile-lock .shot { --keep: 0.84; --fade: 34px; }
+}
+
+.big {
+  font-size: clamp(88px, 9vw, 112px);
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+/* The ranks: a line of seven, the last, the fullest, marked in the flat dawn accent. On a phone
+   they read in pairs, row by row, with Midsummer on its own line at the top of the climb. */
+.ladder {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 16px;
+}
+.ladder li { position: relative; padding-left: 22px; }
+.ladder li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.ladder li:last-child { grid-column: 1 / -1; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.ladder li:last-child::before {
+  top: 22px;
+  left: -1px;
+  width: 11px;
+  height: 11px;
+  background: var(--dawn);
+}
+.ladder b { display: block; font-weight: 600; font-size: 16px; letter-spacing: -0.015em; }
+.ladder span { display: block; color: var(--ink-2); font-size: 14px; }
+
+/* Two columns from a tablet up. */
+@media (min-width: 640px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "rules rules"
+      "sessions score"
+      "words lock"
+      "sealed web"
+      "ranks ranks";
+  }
+  .tile-rules { grid-area: rules; }
+  .tile-sessions { grid-area: sessions; }
+  .tile-score { grid-area: score; }
+  .tile-words { grid-area: words; }
+  .tile-lock { grid-area: lock; }
+  .tile-sealed { grid-area: sealed; }
+  .tile-web { grid-area: web; }
+  .tile-ranks { grid-area: ranks; }
+
+  .tile-rules { flex-direction: row; align-items: stretch; gap: 28px; padding-bottom: 0; }
+  .tile-rules .text { flex: 1 1 0; display: flex; flex-direction: column; padding-bottom: 28px; max-width: 420px; }
+  .tile-rules .figures { margin-top: auto; padding-top: 28px; }
+  .tile-rules .shot { margin: 36px 4% 0 0; align-self: flex-end; }
+  .tile-rules .shot, .tile-sessions .shot { --keep: 0.8; }
+
+  .ladder { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; }
+  .ladder li { padding: 26px 8px 0 0; }
+  .ladder li::before { top: 0; left: 0; }
+  .ladder li:last-child { grid-column: auto; padding-top: 26px; border-top: 0; }
+  .ladder li:last-child::before { top: -1px; left: -1px; }
+  .ladder li::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    right: 6px;
+    top: 4px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.16);
+  }
+  .ladder li:last-child::after { display: none; }
+  .ladder b { font-size: 15px; }
+  .ladder span { font-size: 13px; }
+}
+
+/* A six-column grid on a wide screen: the rules wide beside the sessions, three screens in a row,
+   the two locks without a screen side by side, the ranks across the foot. */
+@media (min-width: 900px) {
+  .bento {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-areas:
+      "rules rules rules rules sessions sessions"
+      "score score words words lock lock"
+      "sealed sealed sealed web web web"
+      "ranks ranks ranks ranks ranks ranks";
+  }
+  /* The rules screen stands from the title's line to the tile's foot, as tall as the row. */
+  .tile-rules .shot { --w: 280px; position: relative; height: auto; align-self: stretch; margin: 28px 6% 0 0; }
+  .tile-rules .shot .phone { position: absolute; top: 0; left: 0; }
+  .tile-rules .figures { flex-direction: column; gap: 20px; }
+  .tile-note { padding: 30px 32px 32px; }
+}
+
+@media (min-width: 1100px) {
+  .tile-ranks { flex-direction: row; gap: 40px; align-items: center; }
+  .tile-ranks .text { flex: 0 0 300px; }
+  .tile-ranks .ladder { flex: 1; margin: 0; }
+  .ladder b { font-size: 17px; }
+  .ladder span { font-size: 14px; }
+}
+
+/* ---------- Free and Toll Pro ---------- */
+
+.plans-section > .light { --at: 520px; --h: 1500px; --a: 0.66; --rx: 52%; }
+
+.plans-grid { display: grid; gap: 16px; max-width: 980px; margin: 0 auto; }
+.plan { padding: 32px; display: flex; flex-direction: column; }
+.plan h3 { font-size: 28px; letter-spacing: -0.025em; }
+.plan > p { margin-top: 8px; color: var(--ink-2); }
+.plan-pro {
+  background: linear-gradient(180deg, rgba(200, 182, 255, 0.06), rgba(200, 182, 255, 0.015) 40%, rgba(255, 255, 255, 0.016)), var(--glass-tint);
+}
+/* The selected plan's edge, as C draws it: a faint lilac line under the rim. */
+.plan-pro::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1px;
   pointer-events: none;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.04) 35%, transparent 60%, rgba(255, 255, 255, 0.06));
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  box-shadow: inset 0 0 0 1px rgba(200, 182, 255, 0.24);
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-.feature p { color: var(--secondary); font-size: 16px; }
-.icon {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 18px;
-  border-radius: 14px;
-  color: var(--gold-light);
-  background: linear-gradient(rgba(232, 176, 75, 0.20), rgba(232, 176, 75, 0.08));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(232, 176, 75, 0.22), 0 0 24px rgba(232, 176, 75, 0.12);
-}
-.icon svg { width: 22px; height: 22px; }
+.plan > .plan-foot { margin-top: auto; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.08); color: var(--ink-2); font-size: 15px; }
 
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  counter-reset: step;
-}
-.step { position: relative; }
-.step::before {
-  counter-increment: step;
-  content: counter(step);
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  margin-bottom: 16px;
-  border-radius: 50%;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--background);
-  background: linear-gradient(var(--gold-pale), var(--gold) 60%, var(--gold-deep));
-  box-shadow: 0 0 20px rgba(232, 176, 75, 0.35);
-}
-.step p { color: var(--secondary); font-size: 16px; }
-
-/* The iOS section */
-.get {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  padding: clamp(40px, 7vw, 64px) 24px;
-}
-.get::before {
+.checks { list-style: none; margin: 24px 0 28px; padding: 0; display: grid; gap: 12px; align-content: start; }
+.checks li { position: relative; padding-left: 30px; }
+.checks li::before {
   content: "";
   position: absolute;
-  inset: -40% -10% auto;
-  height: 120%;
-  background: radial-gradient(ellipse at 50% 0%, rgba(232, 176, 75, 0.22), transparent 60%);
-  pointer-events: none;
+  left: 0;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  background: var(--done);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M3.5 9.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M3.5 9.5l3.5 3.5 7.5-8' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.get > * { position: relative; }
-.get .mark {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 0 22px rgba(232, 176, 75, 0.5));
-}
-.get .lede { margin-top: 12px; max-width: 480px; }
-.get .actions { margin-top: 26px; display: flex; justify-content: center; }
-.soon {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 0 22px;
-  border-radius: 999px;
-  color: var(--ink);
-  font-weight: 600;
-}
-.soon svg { width: 18px; height: 18px; color: var(--gold-light); }
 
-/* Document pages: support and privacy */
-.page-head {
-  padding: clamp(48px, 8vw, 80px) 0 28px;
-}
-.page-head .eyebrow { margin-bottom: 16px; }
-.page-head h1 { font-size: clamp(38px, 7vw, 60px); }
-.page-head .lede { margin-left: 0; }
+.fine { margin: 28px auto 0; max-width: 620px; text-align: center; color: var(--ink-2); font-size: 15px; text-wrap: balance; }
 
-.policy > section {
-  padding: 22px 0;
-  border-top: 1px solid var(--hairline);
+@media (min-width: 768px) {
+  /* The two plans share their rows, so the lines, the lists and the feet sit level. */
+  .plans-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr auto; column-gap: 16px; row-gap: 0; }
+  @supports (grid-template-rows: subgrid) {
+    .plan { display: grid; grid-row: span 4; grid-template-rows: subgrid; }
+    .plan > .plan-foot { margin-top: 0; }
+  }
 }
-.policy > section:first-child { border-top: 0; padding-top: 0; }
-.policy > section:last-child { padding-bottom: 0; }
-.policy h2 {
-  font-size: 21px;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
+
+/* ---------- Private by design ---------- */
+
+/* A quiet light, lower than the others, behind the two cards rather than over the title. */
+.private-section > .light { --at: 330px; --h: 1100px; --a: 0.36; --rx: 60%; }
+
+.private-grid { display: grid; gap: 0; padding: 8px 28px; }
+.private-grid > div { padding: 22px 0; }
+.private-grid > div + div { border-top: 1px solid var(--stroke); }
+.private-grid h3 { font-size: 20px; letter-spacing: -0.018em; }
+.private-grid p { margin-top: 8px; color: var(--ink-2); }
+
+.never { margin-top: 16px; }
+.never h3 { font-size: 20px; letter-spacing: -0.018em; }
+.never ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 0; }
+.never li { padding: 14px 0; color: var(--ink-2); border-top: 1px solid var(--stroke); }
+.never li b { color: var(--ink); font-weight: 600; }
+.never .more { margin-top: 18px; }
+
+@media (min-width: 900px) {
+  .private-grid { grid-template-columns: repeat(3, 1fr); padding: 32px 0; }
+  .private-grid > div { padding: 4px 32px; }
+  .private-grid > div + div { border-top: 0; border-left: 1px solid var(--stroke); }
+  .never ul { grid-template-columns: 1fr 1fr; column-gap: 32px; }
 }
-.policy p, .policy li { color: var(--secondary); }
-.policy strong { color: var(--ink); font-weight: 600; }
-.policy ul { margin: 6px 0 12px; padding-left: 20px; }
-.policy li { margin: 5px 0; }
 
-.stack { display: grid; gap: 14px; }
+/* ---------- Coming to the App Store ---------- */
 
-.contact {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
+.get { text-align: center; padding-bottom: clamp(56px, 7vw, 96px); }
+.get > .light { --at: 140px; --h: 1000px; --a: 0.8; --rx: 46%; }
+.app-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 32px;
+  border-radius: 27px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 60px -24px rgba(0, 0, 0, 0.9);
 }
-.contact h2 { font-size: 24px; margin-bottom: 4px; }
+.get h2 { font-size: clamp(36px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.026em; }
+.get .lede { max-width: 560px; margin: 18px auto 0; text-wrap: balance; }
+.get .actions { margin-top: 32px; }
+.meta { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; color: var(--ink-2); font-size: 15px; }
+.meta span { margin: 0 10px; color: rgba(255, 255, 255, 0.35); }
 
-/* Questions, open with a tap, no script needed. */
-.faq { padding-top: 6px; padding-bottom: 6px; }
-details { border-top: 1px solid var(--hairline); }
-details:first-of-type { border-top: 0; }
-summary {
+/* ---------- Footer ---------- */
+
+.foot { padding: 28px 0 40px; border-top: 1px solid var(--stroke); }
+.foot .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+.sign { display: inline-flex; align-items: center; gap: 14px; color: var(--ink-2); font-size: 14px; }
+.sign img { height: 18px; width: auto; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 0 22px; }
+/* Tall enough to tap: 44 px. */
+.foot nav a { display: inline-block; padding: 12px 0; color: var(--ink-2); font-size: 14px; line-height: 20px; text-decoration: none; }
+.foot nav a:hover { color: var(--ink); }
+
+/* ---------- Support, privacy and 404 ---------- */
+
+.page { padding: 124px 0 clamp(56px, 6vw, 80px); }
+.page > .light { --rx: 82%; --h: 1400px; --a: 0.5; }
+.page > .light-mid { --at: 36%; }
+.page > .light-low { --at: 72%; }
+/* A soft floor of light above the footer, ending at main's foot. */
+.page > .light-foot { --at: calc(100% - 450px); --h: 900px; --a: 0.42; }
+.page-head { margin-bottom: 40px; }
+.page-head h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.04; letter-spacing: -0.03em; }
+.page-head .lede { margin-top: 16px; }
+/* Under the title, as the app shows it: "Privacy Policy", then the date. */
+.page-head .date { display: block; margin-top: 14px; color: var(--ink-2); font-size: 15px; font-weight: 500; }
+
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 20px; }
+/* The app icon a size up on wider screens, so its tilted T reads at its own weight. */
+.contact-icon { flex: none; width: 84px; height: 84px; border-radius: 19px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.contact > div { flex: 1 1 200px; }
+.contact h2 { font-size: 22px; letter-spacing: -0.02em; }
+.contact p { margin-top: 4px; color: var(--ink-2); }
+.contact .inapp { display: block; font-size: 15px; }
+
+.block { margin-top: 44px; }
+.block > h2 { font-size: 24px; letter-spacing: -0.022em; margin: 0 0 14px 4px; }
+
+.card.faq { padding: 6px 0; }
+.faq details { position: relative; }
+/* Dividers inset to the question's text on both sides, as iOS insets a grouped list's, so the
+   glass's bright edge stays clean. */
+.faq details + details > summary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background: var(--stroke);
+}
+.faq summary {
   list-style: none;
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
-  padding: 18px 0;
+  padding: 18px 24px;
   font-weight: 600;
-  font-size: 17px;
+  letter-spacing: -0.015em;
+  border-radius: 18px;
 }
-summary::-webkit-details-marker { display: none; }
-summary::after {
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
   content: "";
   flex: none;
-  width: 22px;
-  height: 22px;
+  width: 14px;
+  height: 14px;
+  background: #BDBDC2;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 5l4.5 4.5 4.5-4.5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 5l4.5 4.5 4.5-4.5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.3s var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(180deg); }
+.faq summary:hover { background: rgba(255, 255, 255, 0.035); }
+.faq details p { padding: 0 24px 20px; margin-top: -4px; color: var(--ink-read); }
+
+.note { color: var(--ink-2); }
+
+/* The policy: its twelve sections in four glass cards of three, by meaning (what Toll keeps; Screen
+   Time, purchases and notifications; your data; this page), with the contents beside it on a wide
+   screen, broken the same way. The column is held to a reading measure of about 70 characters. */
+.doc-col { --wrap: 680px; }
+.doc { display: grid; grid-template-columns: minmax(0, 1fr); }
+.doc > * { min-width: 0; }
+.policy-cards { display: grid; gap: 16px; }
+.card.policy { padding: 8px 36px; }
+.policy section { padding: 26px 0; scroll-margin-top: 96px; }
+.policy section + section { border-top: 1px solid var(--stroke); }
+.policy h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+/* Long reading fills the measure (WebKit's pretty wrapping would rag it); the few one-word last
+   lines are held with a no-break space in the text. */
+.policy p, .policy li { text-wrap: wrap; }
+.policy p { margin-top: 8px; color: var(--ink-read); }
+.policy p strong { color: var(--ink); font-weight: 600; }
+.policy ul { margin: 12px 0 0; padding-left: 20px; color: var(--ink-read); }
+.policy li + li { margin-top: 8px; }
+
+.toc-title { margin: 0 0 12px; color: var(--ink); font-size: 15px; font-weight: 600; }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc a { display: block; padding: 6px 0; color: var(--ink-2); font-size: 15px; line-height: 1.35; text-decoration: none; }
+.toc a:hover { color: var(--ink); }
+.toc li.next-group { margin-top: 12px; }
+
+.toc-wide { display: none; }
+.card.toc-narrow { margin-bottom: 0; padding: 0; --rim: 0.36; }
+.toc-narrow summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px 14px 24px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  border-radius: var(--radius);
+}
+.toc-narrow summary::-webkit-details-marker { display: none; }
+.toc-narrow .count { margin-left: auto; color: var(--ink-2); font-size: 15px; font-weight: 500; }
+/* The chevron in a small glass circle, a control rather than a form field. */
+.toc-narrow summary::after {
+  content: "";
+  flex: none;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background:
-    linear-gradient(var(--secondary), var(--secondary)) center / 10px 2px no-repeat,
-    linear-gradient(var(--secondary), var(--secondary)) center / 2px 10px no-repeat,
-    rgba(255, 255, 255, 0.07);
-  transition: transform 0.25s ease;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 5l4.5 4.5 4.5-4.5' fill='none' stroke='%23D6D6DB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 13px no-repeat,
+    rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transition: transform 0.3s var(--ease);
 }
-details[open] summary::after {
-  transform: rotate(45deg);
-}
-details p {
-  margin: -6px 0 18px;
-  color: var(--secondary);
-  max-width: 600px;
+.toc-narrow[open] summary::after { transform: rotate(180deg); }
+.toc-narrow ol { padding: 0 24px 16px; columns: 2; column-gap: 20px; }
+.toc-narrow li { break-inside: avoid; }
+.toc-narrow li.next-group { margin-top: 0; }
+
+@media (min-width: 1280px) {
+  /* The contents and the column centred as one unit, the contents level with the cards. */
+  .doc-col { --wrap: 956px; }
+  .doc { grid-template-columns: 220px minmax(0, 680px); column-gap: 56px; justify-content: center; }
+  .doc > .page-head { grid-column: 2; grid-row: 1; }
+  .doc > .policy-cards { grid-column: 2; grid-row: 2; }
+  .toc-wide { display: block; grid-column: 1; grid-row: 2; align-self: start; position: sticky; top: 112px; }
+  .toc-narrow { display: none; }
+  .toc-wide a { padding-left: 14px; box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1); transition: color 0.25s, box-shadow 0.25s; }
 }
 
-/* Footer */
-footer {
-  margin-top: clamp(72px, 12vw, 128px);
-  border-top: 1px solid var(--hairline);
-}
-footer .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px 24px;
-  padding-top: 26px;
-  padding-bottom: 40px;
-  font-size: 14px;
-  color: var(--tertiary);
-}
-footer .sign {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-footer .sign img { width: 20px; height: 20px; opacity: 0.9; }
-footer nav { display: flex; flex-wrap: wrap; gap: 20px; }
-footer a { color: var(--secondary); }
-footer a:hover { color: var(--ink); }
-
-/* Motion: the bar and the hero float in once on arrival; cards rise into place as they scroll into
-   view (browsers with scroll-driven animations; the rest simply show them). The translate property
-   adds to each element's own transform, so the side phones keep their offset. */
-@keyframes float-in {
-  from { opacity: 0; translate: 0 18px; filter: blur(8px); }
-  to { opacity: 1; translate: 0 0; filter: none; }
-}
-@keyframes phone-in {
-  from { opacity: 0; translate: 0 60px; }
-  to { opacity: 1; translate: 0 0; }
-}
-.hero .eyebrow, .hero h1, .hero .lede, .hero .actions {
-  animation: float-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-.hero h1 { animation-delay: 0.08s; }
-.hero .lede { animation-delay: 0.16s; }
-.hero .actions { animation-delay: 0.24s; }
-.showcase .phone { animation: phone-in 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.showcase .phone.center { animation-delay: 0.28s; }
-.showcase .phone.side { animation-delay: 0.42s; }
-
-@supports (animation-timeline: view()) {
-  @keyframes rise-in {
-    from { opacity: 0; translate: 0 28px; }
-    to { opacity: 1; translate: 0 0; }
-  }
-  .steps .card, .grid .card, .get {
-    animation: rise-in linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 60%;
+/* Where the browser can tie an animation to a section's place in the window, the contents mark the
+   section being read: white words and a short flat bar of the dawn accent. No script. */
+@supports (timeline-scope: --a) and (animation-timeline: view()) {
+  @media (min-width: 1280px) {
+    .doc { timeline-scope: --t-no-account, --t-photos, --t-keeps, --t-screen-time, --t-purchases, --t-notifications, --t-tracking, --t-choices, --t-children, --t-website, --t-changes, --t-contact; }
+    #no-account { view-timeline-name: --t-no-account; }
+    #photos { view-timeline-name: --t-photos; }
+    #keeps { view-timeline-name: --t-keeps; }
+    #screen-time { view-timeline-name: --t-screen-time; }
+    #purchases { view-timeline-name: --t-purchases; }
+    #notifications { view-timeline-name: --t-notifications; }
+    #tracking { view-timeline-name: --t-tracking; }
+    #choices { view-timeline-name: --t-choices; }
+    #children { view-timeline-name: --t-children; }
+    #website { view-timeline-name: --t-website; }
+    #changes { view-timeline-name: --t-changes; }
+    #contact { view-timeline-name: --t-contact; }
+    .toc-wide a { animation: reading linear none; animation-range: cover 70vh cover calc(100% - 30vh); }
+    .toc-wide a[href="#no-account"] { animation-timeline: --t-no-account; }
+    .toc-wide a[href="#photos"] { animation-timeline: --t-photos; }
+    .toc-wide a[href="#keeps"] { animation-timeline: --t-keeps; }
+    .toc-wide a[href="#screen-time"] { animation-timeline: --t-screen-time; }
+    .toc-wide a[href="#purchases"] { animation-timeline: --t-purchases; }
+    .toc-wide a[href="#notifications"] { animation-timeline: --t-notifications; }
+    .toc-wide a[href="#tracking"] { animation-timeline: --t-tracking; }
+    .toc-wide a[href="#choices"] { animation-timeline: --t-choices; }
+    .toc-wide a[href="#children"] { animation-timeline: --t-children; }
+    .toc-wide a[href="#website"] { animation-timeline: --t-website; }
+    .toc-wide a[href="#changes"] { animation-timeline: --t-changes; }
+    .toc-wide a[href="#contact"] { animation-timeline: --t-contact; }
   }
 }
+@keyframes reading {
+  from, to { color: var(--ink); box-shadow: inset 2px 0 0 var(--dawn); }
+}
 
-/* Phones and small tablets */
-@media (max-width: 860px) {
-  .grid, .steps { grid-template-columns: 1fr 1fr; }
+@media (max-width: 599px) {
+  .card { padding: 24px; }
+  .card.policy { padding: 4px 22px; }
+  .faq summary { padding: 18px 20px; }
+  .faq details + details > summary::before { left: 20px; right: 20px; }
+  .faq details p { padding: 0 20px 20px; }
+  .contact .btn { width: 100%; }
+  .contact-icon { width: 72px; height: 72px; border-radius: 16px; }
+  .toc-narrow summary { padding: 12px 12px 12px 22px; }
+  .toc-narrow ol { padding: 0 22px 14px; }
 }
-@media (max-width: 600px) {
-  body { font-size: 16px; }
-  .wrap { padding: 0 20px; }
-  .bar { padding-top: 10px; }
-  .island { height: 54px; padding: 0 5px 0 8px; }
-  .nav { gap: 0; font-size: 14px; }
-  .nav a:not(.button) { padding: 8px 10px; }
-  .nav .button { margin-left: 4px; }
-  .grid, .steps { grid-template-columns: 1fr; }
-  .card { padding: 20px; border-radius: 24px; }
-  .phone { width: 58vw; }
-  .phone.side { width: 44vw; }
-  .showcase { gap: 10px; }
-  .contact .button { width: 100%; }
+
+/* The 404: the doorway, smaller, with the way back on its floor. */
+.lost {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+  padding: 64px 0 clamp(64px, 8vw, 104px);
 }
-@media (max-width: 380px) {
-  .nav a.hide-small { display: none; }
+.lost .door { --door: min(480px, 112vw); }
+.lost-copy { margin-top: calc(-0.2 * min(480px, 112vw)); }
+.lost h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.04; letter-spacing: -0.03em; }
+.lost .lede { max-width: 520px; margin: 18px auto 0; text-wrap: balance; }
+.lost .actions { margin-top: 32px; }
+
+/* ---------- Motion: a soft rise on view, the light settling back as the page moves ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero .door img { animation: breathe 9s ease-in-out infinite alternate; }
+  .hero-copy > * { animation: arrive 1s var(--ease) backwards; }
+  .hero-copy > :nth-child(2) { animation-delay: 0.08s; }
+  .hero-copy > :nth-child(3) { animation-delay: 0.16s; }
+
+  @supports (animation-timeline: view()) {
+    .rise {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+    .hero .door {
+      animation: recede linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 720px;
+    }
+  }
+}
+
+@keyframes breathe {
+  from { opacity: 0.94; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.012); }
+}
+@keyframes arrive {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(40px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes recede {
+  to { transform: translateY(150px) scale(0.94); opacity: 0.45; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .button, summary::after, .nav a { transition: none; }
-  *, *::before, *::after { animation: none !important; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 
-@media print {
-  body::before { display: none; }
-  body { background: #fff; color: #000; }
-  .bar, footer, .skip { display: none; }
-  .glass { backdrop-filter: none; -webkit-backdrop-filter: none; }
-  .policy p, .policy li, .secondary, .lede { color: #222; }
-  .card { box-shadow: none; padding: 0; }
+/* ---------- Without backdrop-filter: C's flat card, never a muddy see-through ---------- */
+/* Last in the file, so it wins over every glass fill above. */
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-clear,
+  .top-bar,
+  .plan-pro {
+    background: var(--card);
+    box-shadow: none;
+  }
+  .glass::before { background: var(--stroke); }
+  .plan-pro::after { box-shadow: inset 0 0 0 1px rgba(200, 182, 255, 0.24); }
+  .btn-glass { background: var(--capsule); box-shadow: none; }
+  .btn-glass::before { background: var(--stroke); }
+  .tag { background: var(--capsule); }
 }

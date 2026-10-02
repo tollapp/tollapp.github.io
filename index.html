@@ -3,138 +3,305 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Toll · Gate opens at proof</title>
-  <meta name="description" content="Toll keeps the apps you choose behind a gate until you prove today's habit with a photo from the live camera, checked on your iPhone.">
-  <meta name="theme-color" content="#0a0a0a">
-  <meta property="og:title" content="Toll · Gate opens at proof">
+  <title>Toll · Prove the habit, open the apps</title>
+  <meta name="description" content="Toll keeps the apps you choose behind a gate. Prove each day's habit with a photo from the live camera, checked on your iPhone, and they stay open.">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Toll · Prove the habit, open the apps">
   <meta property="og:description" content="The apps you choose wait behind a gate until you prove today's habit with a photo.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tollapp.github.io/">
+  <meta property="og:image" content="https://tollapp.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Toll wordmark beside a doorway of dawn light, with the line: Prove the habit. Open the apps.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" as="image" href="assets/door.webp" imagesrcset="assets/door-640.webp 640w, assets/door.webp 1006w" imagesizes="(max-width: 534px) 116vw, 620px">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to the page</a>
 
-  <header class="bar">
-    <div class="wrap">
-      <div class="island glass">
-      <a class="brand" href="./" aria-label="Toll, home"><img src="assets/mark.svg" alt=""></a>
+  <header class="top">
+    <div class="top-bar">
+      <a class="brand" href="./" aria-label="Toll, home"><img src="assets/wordmark.svg" width="558" height="300" alt=""></a>
       <nav class="nav" aria-label="Pages">
-        <a class="hide-small" href="support/">Support</a>
-        <a href="privacy/">Privacy</a>
-        <a class="button small" href="#get">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg>
-          iOS
-        </a>
+        <a class="wide" href="#how">How it works</a>
+        <a class="wide" href="#plans">Toll Pro</a>
+        <a href="support/">Support</a>
+        <a class="narrow-hide" href="privacy/">Privacy</a>
+        <a class="status" href="#get">Coming soon</a>
       </nav>
-      </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow">Habits with proof, for iPhone</p>
-        <h1>Gate opens<br><span class="gold-text">at proof.</span></h1>
-        <p class="lede">Toll keeps the apps you choose behind a gate until you prove today's habit with a photo from the live camera, checked on your iPhone.</p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="toplight"></div>
+      <div class="door">
+        <img src="assets/door.webp" srcset="assets/door-640.webp 640w, assets/door.webp 1006w" sizes="(max-width: 534px) 116vw, 620px" width="1006" height="1003" fetchpriority="high" alt="Toll's gate of light, as the app draws it on Home: a doorway open onto first light, glowing on its floor.">
+      </div>
+      <div class="wrap hero-copy">
+        <h1 id="hero-title">Prove the habit.<br>Open the apps.</h1>
+        <p class="lede">Toll keeps the apps you choose behind a gate. Prove each day's habit with a photo by midnight and they stay open. Miss a day, and the next day they wait until its proof.</p>
         <div class="actions">
-          <a class="button" href="#get">Coming to iOS</a>
-          <a class="button glass" href="#how">How it works</a>
-        </div>
-      </div>
-      <div class="showcase" aria-label="Toll on iPhone">
-        <div class="phone side"><img src="assets/screens/score.webp" width="600" height="1304" alt="Toll Score: 75 on a gold arc, made of the day's proofs, focus time and week." loading="lazy"></div>
-        <div class="phone center"><img src="assets/screens/streak.webp" width="600" height="1304" alt="A live flame over a 12 day streak, this week's days marked with flames."></div>
-        <div class="phone side"><img src="assets/screens/profile.webp" width="600" height="1304" alt="The profile: a Platinum rank medallion in a laurel, focus time, day streak and the ranks ahead." loading="lazy"></div>
-      </div>
-    </section>
-
-    <section class="section" id="how">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="label">How it works</p>
-          <h2>Three steps, every day.</h2>
-        </div>
-        <div class="steps">
-          <div class="card step">
-            <h3>Pick the apps and the habits</h3>
-            <p>The gym, meals, study, a run, a walk with the dog, or a habit of your own. While one is due, the apps you chose are shielded.</p>
-          </div>
-          <div class="card step">
-            <h3>Prove it with a photo</h3>
-            <p>From the live camera, checked on your iPhone in a moment. A desk with your notes, your plate, the gym.</p>
-          </div>
-          <div class="card step">
-            <h3>The gate opens for the day</h3>
-            <p>The apps come back until tomorrow, and the streak grows by a day.</p>
-          </div>
+          <a class="btn btn-primary" href="#how">See how it works</a>
+          <a class="btn btn-glass" href="#plans">Compare the plans</a>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="light"></div>
+      <div class="light light-floor"></div>
       <div class="wrap">
-        <div class="section-head">
-          <p class="label">What you get</p>
-          <h2>Strict where it counts. Kind where it matters.</h2>
+        <div class="head rise">
+          <h2 id="how-title">Set it up once. Prove it every day.</h2>
+          <p class="lede">No honor system. Do the habit, then show it to the camera.</p>
         </div>
-        <div class="grid">
-          <div class="card feature">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
-            <h3>The apps wait</h3>
-            <p>Shields from Apple's Screen Time, not tricks. The apps stay on your Home Screen and open the moment the gate does.</p>
+        <ol class="steps">
+          <li class="step">
+            <img class="phone rise" src="assets/screens/habit.webp" srcset="assets/screens/habit.webp 600w, assets/screens/habit-840.webp 840w" sizes="(max-width: 899px) 248px, 272px" width="600" height="1251" loading="lazy" decoding="async" alt="New habit in Toll: a grid of kinds from Gym, Meals and Study to Water and Your own, the days of the week, and the gym's proof, a check-in and a check-out 30 minutes later.">
+            <div class="card glass glass-clear rise">
+              <span class="step-num" aria-hidden="true">1</span>
+              <h3><span class="sr">Step 1: </span>Choose the apps and the habit</h3>
+              <p>Toll shields the apps that take your hours with Apple's Screen Time. Then pick the habit that opens the gate, from the gym to a walk with the dog.</p>
+            </div>
+          </li>
+          <li class="step">
+            <img class="phone rise" src="assets/screens/proof.webp" srcset="assets/screens/proof.webp 600w, assets/screens/proof-840.webp 840w" sizes="(max-width: 899px) 248px, 272px" width="600" height="1251" loading="lazy" decoding="async" alt="A proof in Toll: an example photo of dumbbells on a gym floor, marked Done, Second photo in. The gate opens.">
+            <div class="card glass glass-clear rise">
+              <span class="step-num" aria-hidden="true">2</span>
+              <h3><span class="sr">Step 2: </span>Prove it with a photo</h3>
+              <p>From the live camera, by midnight. Toll checks it on your iPhone and never keeps it. The gym takes a check-in and a check-out.</p>
+            </div>
+          </li>
+          <li class="step">
+            <img class="phone rise" src="assets/screens/open.webp" srcset="assets/screens/open.webp 600w, assets/screens/open-840.webp 840w" sizes="(max-width: 899px) 248px, 272px" width="600" height="1251" loading="lazy" decoding="async" alt="Gate open in Toll: Your apps are back. Tomorrow starts open. Meals proved at 9:36 AM, and 15 days in a row.">
+            <div class="card glass glass-clear rise">
+              <span class="step-num" aria-hidden="true">3</span>
+              <h3><span class="sr">Step 3: </span>The gate opens</h3>
+              <p>Your apps are back for the day, the streak grows by one, and tomorrow starts open.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section gate-section" aria-labelledby="gate-title">
+      <div class="light"></div>
+      <div class="wrap gate-grid">
+        <div class="gate-copy">
+          <div class="say rise">
+            <h2 id="gate-title">Miss a day, and the next one starts shut.</h2>
+            <p class="lede">While the gate is shut, it can't be talked down. Removing apps or making a habit easier waits until midnight, and loosening a schedule or a limit waits until it lets go.</p>
+            <p class="quiet">With Toll Pro, the gate can shut every morning instead, until that day's proof.</p>
           </div>
-          <div class="card feature">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.7l1.3-2h5l1.3 2h1.7A2.5 2.5 0 0 1 20 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
-            <h3>Proof, on the phone</h3>
-            <p>Apple's on-device models check the photo. It is never stored and never leaves your iPhone.</p>
+          <div class="card glass rest rise">
+            <p class="big" aria-hidden="true">2</p>
+            <div>
+              <h3><span class="sr">2 </span>Rest day tokens a month</h3>
+              <p>A token covers one day, today or tomorrow. Nothing is due that day, and the streak keeps.</p>
+            </div>
           </div>
-          <div class="card feature">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c3.6 0 6.5-2.6 6.5-6.3 0-3.5-2.4-5.6-3.6-8.7-.4 1.9-1.4 3-2.6 3.4.3-2.8-.6-5.4-2.8-7.4-.2 3.8-4 6.4-4 11 0 4.1 2.9 8 6.5 8z"/><path d="M12 21c-1.6 0-2.8-1.3-2.8-3 0-2 1.6-3 2.3-4.6.8 1.5 3.3 2.5 3.3 4.7 0 1.6-1.2 2.9-2.8 2.9z"/></svg></div>
-            <h3>Streaks, ranks, a score</h3>
-            <p>A streak that burns, seven ranks from Iron to Obsidian, and Toll Score for how the day went.</p>
-          </div>
-          <div class="card feature">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M18.5 6.5l1.5-1.5"/></svg></div>
+        </div>
+        <div class="pair rise">
+          <figure>
+            <img class="phone" src="assets/screens/home.webp" srcset="assets/screens/home.webp 600w, assets/screens/home-840.webp 840w" sizes="(max-width: 639px) 44vw, 272px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's Home with the gate open: the doorway full of dawn light, The gate stays open today, Toll Score 68, Meals at 2 of 3 plates, and Walk the dog and Gym done.">
+            <figcaption><strong>Open</strong>While you show up</figcaption>
+          </figure>
+          <figure>
+            <img class="phone" src="assets/screens/shut.webp" srcset="assets/screens/shut.webp 600w, assets/screens/shut-840.webp 840w" sizes="(max-width: 639px) 44vw, 272px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's Home the day after a miss: the doorway closed under a violet dusk sky, Gym was missed yesterday. The gate opens at proof, and a Toll Score of 0.">
+            <figcaption><strong>Shut</strong>The day after a miss</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="light"></div>
+      <div class="light light-bento"></div>
+      <div class="light light-bento-2"></div>
+      <div class="wrap">
+        <div class="head rise">
+          <h2 id="features-title">Strict where it counts.</h2>
+          <p class="lede">Rules that hold the gate, sessions that shut it, and a rank that only grows.</p>
+        </div>
+        <div class="bento">
+          <article class="card glass tile tile-rules rise">
+            <div class="text">
+              <div class="tile-head"><h3>Schedules and limits</h3><span class="tag">Toll Pro</span></div>
+              <p>Shut the gate on a schedule, or once the apps have had their minutes for the day. Neither asks for a photo; both open by themselves.</p>
+              <div class="figures">
+                <p><b>9 to 5</b><span>A workday, the days you pick</span></p>
+                <p><b>10 PM</b><span>The night, until the morning</span></p>
+                <p><b>45m</b><span>A day in the apps, then shut until midnight</span></p>
+              </div>
+            </div>
+            <div class="shot">
+              <img class="phone" src="assets/screens/apps.webp" srcset="assets/screens/apps.webp 600w, assets/screens/apps-840.webp 840w" sizes="(min-width: 900px) 280px, 262px" width="600" height="1251" loading="lazy" decoding="async" alt="Apps in Toll: the rules as photo cards, Meals at 2 of 3 plates, a Workday from 9:00 AM to 5:00 PM and Gym done, then Behind the gate and Outside the gate.">
+            </div>
+          </article>
+
+          <article class="card glass tile tile-photo tile-sessions rise">
             <h3>Focus sessions</h3>
-            <p>Shut the gate for 15 minutes to 3 hours, proof or not. It opens by itself at the end, even with Toll closed.</p>
-          </div>
-          <div class="card feature">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg></div>
-            <h3>Strict by choice</h3>
-            <p>Gate lock and Hard mode are off until you turn them on, and each has a way out that needs no one. Two rest days a month keep the streak.</p>
-          </div>
-          <div class="card feature">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.7-1.4A4.5 4.5 0 0 0 7 18.5z"/><path d="M10 14l1.6 1.6L14.5 12.5"/></svg></div>
-            <h3>No account, no tracking</h3>
-            <p>No sign-up, no server of its own, no ads, no analytics. Your history lives on your iPhone and in your own iCloud.</p>
-          </div>
+            <p>Shut the gate for 15 minutes to 3 hours, proof or not. It opens by itself; opening early takes a deliberate hold.</p>
+            <div class="shot">
+              <img class="phone" src="assets/screens/sessions.webp" srcset="assets/screens/sessions.webp 600w, assets/screens/sessions-840.webp 840w" sizes="262px" width="600" height="1251" loading="lazy" decoding="async" alt="Sessions in Toll: 25:00 over a lake at night, a dial of minutes and a Start button, then moments such as Heads down for 50 minutes, and the week.">
+            </div>
+          </article>
+
+          <article class="card glass tile tile-photo tile-score rise">
+            <h3>Toll Score</h3>
+            <p>How the day went, out of 100: proof, sessions and the last seven days. Under it, the week's proofs and sessions.</p>
+            <div class="shot">
+              <img class="phone" src="assets/screens/score.webp" srcset="assets/screens/score.webp 600w, assets/screens/score-840.webp 840w" sizes="262px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll Score in Toll: 68, down 10 since yesterday, made of 43 for proof, 0 for sessions and 25 for the last 7 days, then 6 of 7 proofs and the week's sessions.">
+            </div>
+          </article>
+
+          <article class="card glass tile tile-photo tile-words rise">
+            <h3>The gate screen</h3>
+            <p>Why the gate is shut, when it opens, and a line you choose: your own reason, a short poem, or with Toll Pro the Gospels, the Quran and more.</p>
+            <div class="shot">
+              <img class="phone" src="assets/screens/gatescreen.webp" srcset="assets/screens/gatescreen.webp 600w, assets/screens/gatescreen-840.webp 840w" sizes="262px" width="600" height="1251" loading="lazy" decoding="async" alt="The gate screen's words in Toll: a preview reading Gate opens at proof with your own reason quoted under it, then the sets of words to choose from.">
+            </div>
+          </article>
+
+          <article class="card glass tile tile-photo tile-lock rise">
+            <div class="tile-head"><h3>Gate lock</h3><span class="tag">Toll Pro</span></div>
+            <p>A PIN only before something that loosens the gate. Never to prove a habit, and a forgotten PIN lifts after 24 hours.</p>
+            <div class="shot">
+              <img class="phone" src="assets/screens/gatelock.webp" srcset="assets/screens/gatelock.webp 600w, assets/screens/gatelock-840.webp 840w" sizes="262px" width="600" height="1251" loading="lazy" decoding="async" alt="Gate lock in Toll: Lock the gate with a PIN, so a weak moment can't loosen it. What the PIN guards: removing apps, easing or archiving a rule, ending a session early, taking a rest day and turning protection off.">
+            </div>
+          </article>
+
+          <article class="card glass tile tile-note tile-sealed rise">
+            <div class="tile-head"><h3>The sealed gate</h3><span class="tag">Toll Pro</span></div>
+            <p>While the gate is shut, iOS blocks deleting Toll and your apps, keeps the date and time automatic, and sessions run to the end. The seal lifts the moment the gate opens.</p>
+          </article>
+
+          <article class="card glass tile tile-note tile-web rise">
+            <div class="tile-head"><h3>Website protection</h3><span class="tag">Toll Pro</span></div>
+            <p>Adult websites filtered all the time, and every website shut while the gate is shut. Toll never learns which sites you visit.</p>
+          </article>
+
+          <article class="card glass tile tile-ranks rise">
+            <div class="text">
+              <h3>Seven ranks, First&nbsp;Light to Midsummer</h3>
+              <p>Every day the gate opens at proof counts, in a row or not. A rank is never taken away.</p>
+            </div>
+            <ol class="ladder">
+              <li><b>First Light</b><span>Day one</span></li>
+              <li><b>Daybreak</b><span>3 days</span></li>
+              <li><b>Sunrise</b><span>10 days</span></li>
+              <li><b>Morning</b><span>25 days</span></li>
+              <li><b>Daylight</b><span>50 days</span></li>
+              <li><b>Noon</b><span>100 days</span></li>
+              <li><b>Midsummer</b><span>200 days</span></li>
+            </ol>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="get">
+    <section class="section plans-section" id="plans" aria-labelledby="plans-title">
+      <div class="light"></div>
       <div class="wrap">
-        <div class="card get">
-          <img class="mark" src="assets/mark.svg" alt="">
-          <h2>Coming to the App Store.</h2>
-          <p class="lede">Toll is in its last checks before release. Free to start, with Toll Pro for Hard mode and every habit you want. It runs on iPhone with iOS 26.1 or later.</p>
-          <div class="actions">
-            <span class="soon glass">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg>
-              Toll for iOS, soon
-            </span>
+        <div class="head rise">
+          <h2 id="plans-title">Free to start.</h2>
+          <p class="lede">Toll is free with one habit. Toll Pro adds more habits and holds the gate tighter.</p>
+        </div>
+        <div class="plans-grid">
+          <article class="card glass plan rise">
+            <h3>Free</h3>
+            <p>One habit, and everything around it.</p>
+            <ul class="checks">
+              <li>The gate, with proof by photo</li>
+              <li>Focus sessions</li>
+              <li>Two rest day tokens a month</li>
+              <li>Toll Score, streaks and ranks</li>
+              <li>Badges, history and the day's receipt</li>
+              <li>Four sets of words for the gate screen</li>
+            </ul>
+            <p class="plan-foot">No account and no payment. Free for as long as you use it.</p>
+          </article>
+          <article class="card glass glass-clear plan plan-pro rise">
+            <h3>Toll Pro</h3>
+            <p>Everything in Free, and a stricter gate.</p>
+            <ul class="checks">
+              <li>More habits, your own included</li>
+              <li>Schedules and time limits</li>
+              <li>The sealed gate and the gate lock</li>
+              <li>A gate that shuts every morning, if you choose</li>
+              <li>Website protection</li>
+              <li>Every gate screen, the Gospels and Quran too</li>
+            </ul>
+            <p class="plan-foot">Yearly, monthly, or once for life. The yearly plan starts with a free week.</p>
+          </article>
+        </div>
+        <p class="fine rise">When Toll Pro ends, your first habit keeps working and the rest wait, paused, until it is back. Nothing is deleted.</p>
+      </div>
+    </section>
+
+    <section class="section private-section" id="private" aria-labelledby="private-title">
+      <div class="light"></div>
+      <div class="wrap">
+        <div class="head rise">
+          <h2 id="private-title">Private by design.</h2>
+          <p class="lede">Toll has no account and no server of its own. What it keeps stays with you.</p>
+        </div>
+        <div class="card glass private-grid rise">
+          <div>
+            <h3>Photos stay on your iPhone</h3>
+            <p>Each proof is checked on your iPhone, then discarded. Never stored, never uploaded.</p>
           </div>
+          <div>
+            <h3>No account, no login</h3>
+            <p>Your habits and records live on your iPhone and in your own iCloud, so they follow you to a new phone.</p>
+          </div>
+          <div>
+            <h3>No ads, no trackers</h3>
+            <p>No analytics either. Toll does not track you and does not sell or share anything.</p>
+          </div>
+        </div>
+        <div class="card glass never rise">
+          <h3>What Toll never does</h3>
+          <ul>
+            <li><b>Hides your apps.</b> It shields them; they stay on your Home Screen.</li>
+            <li><b>Asks for the PIN</b> to prove a habit or to open Toll.</li>
+            <li><b>Sends a notification</b> you did not ask for.</li>
+            <li><b>Keeps a shield</b> once Toll is deleted.</li>
+          </ul>
+          <p class="more note">The details are in the <a href="privacy/">privacy&nbsp;policy</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section get" id="get" aria-labelledby="get-title">
+      <div class="light"></div>
+      <div class="wrap">
+        <img class="app-icon rise" src="assets/icon.webp" width="240" height="240" loading="lazy" decoding="async" alt="The Toll app icon: a white T with its bar lifted like a gate arm, over a rising line of dawn light.">
+        <div class="rise">
+          <h2 id="get-title">Coming to the App Store.</h2>
+          <p class="lede">Toll is in its last checks before release, free with one habit for as long as you use it. Questions before then are welcome.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="mailto:csamaha655@gmail.com?subject=Toll">Write to us</a>
+          </div>
+          <ul class="meta">
+            <li>iPhone</li>
+            <li><span aria-hidden="true">·</span>iOS 26.1 or later</li>
+            <li><span aria-hidden="true">·</span>Free with one habit</li>
+          </ul>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer class="foot">
     <div class="wrap">
-      <span class="sign"><img src="assets/mark.svg" alt="">© 2026 Toll</span>
+      <span class="sign"><img src="assets/wordmark.svg" width="558" height="300" alt="Toll">© 2026 Toll</span>
       <nav aria-label="More">
         <a href="support/">Support</a>
         <a href="privacy/">Privacy</a>
