@@ -280,8 +280,8 @@ p { margin: 0; }
   border-radius: 1px;
   background: var(--dawn);
 }
-/* "Coming soon" is the bar's status, not a button: white words after a hairline, linking to the
-   page's close, where it says what it means. */
+/* "Download" is the bar's status, not a button: white words after a hairline, linking to the
+   App Store page. */
 .nav .status { margin-left: 13px; color: var(--ink); font-weight: 600; }
 .nav .status::before {
   content: "";
