@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Toll · Habit photos unlock your apps</title>
   <meta name="description" content="Toll locks the apps you scroll too much until you prove your habit with the camera. No ignore button. 7 days free, then $29.99 a year.">
+  <link rel="canonical" href="https://tollapp.github.io/">
   <meta name="apple-itunes-app" content="app-id=6814730604">
-  <meta name="theme-color" content="#FFBE8C">
+  <meta name="theme-color" content="#F7F8FA">
   <meta name="color-scheme" content="light">
   <meta property="og:title" content="Toll: Habit Photos Unlock Apps">
   <meta property="og:description" content="It locks the apps you scroll too much until you prove your habit with the camera.">
@@ -20,121 +21,253 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/google-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to the page</a>
 
-  <header class="top">
-    <div class="top-bar">
-      <a class="brand" href="./" aria-label="Toll, home"><img src="assets/lockup.svg" width="222" height="100" alt=""></a>
-      <nav class="nav" aria-label="Pages">
-        <a class="wide" href="#how">How it works</a>
-        <a class="wide" href="#plans">Plans</a>
-        <a href="support/">Support</a>
-        <a class="narrow-hide" href="privacy/">Privacy</a>
-        <a class="get-pill" href="https://apps.apple.com/app/id6814730604">Download</a>
-      </nav>
-    </div>
+  <div class="feather" aria-hidden="true"></div>
+  <header class="nav">
+    <a class="logo" href="./" aria-label="Toll, home"><img src="assets/icon.webp" width="52" height="52" alt=""></a>
+    <button class="menu-pill glass-control" type="button" popovertarget="menu">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h12M4 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>Menu</span>
+    </button>
+    <a class="btn btn-primary btn-sm nav-get" href="https://apps.apple.com/app/id6814730604">Download</a>
   </header>
+  <div class="menu" id="menu" popover>
+    <button class="menu-close" type="button" popovertarget="menu" popovertargetaction="hide">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>Close</span>
+    </button>
+    <nav class="menu-body" aria-label="Pages">
+      <div class="menu-group">
+        <p class="label item" style="--i:0">Toll</p>
+        <a class="item" style="--i:1" href="./?to=how#how">How it works</a>
+        <a class="item" style="--i:2" href="./?to=features#features">Features</a>
+        <a class="item" style="--i:3" href="./?to=plans#plans">Plans</a>
+        <a class="item" style="--i:4" href="./?to=questions#questions">Questions</a>
+      </div>
+      <div class="menu-group">
+        <p class="label item" style="--i:1">Help</p>
+        <a class="item" style="--i:2" href="support/">Support</a>
+        <a class="item" style="--i:3" href="privacy/">Privacy</a>
+        <a class="item" style="--i:4" href="mailto:csamaha655@gmail.com?subject=Toll">Write to us</a>
+      </div>
+      <div class="menu-foot item" style="--i:5">
+        <a href="https://apps.apple.com/app/id6814730604">Download on the App Store</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+      </div>
+    </nav>
+  </div>
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-band on-peach">
-        <div class="wrap hero-grid">
-          <div class="hero-copy">
-            <h1 id="hero-title" class="display two-tone"><span>Locks your apps</span> <span>until you do your habit.</span></h1>
-            <p class="lede">Toll locks the apps you scroll too much. Prove your habit with the camera (a workout, your desk, a book, a walk) and they open again. Most screen time limits have an ignore button. Toll doesn't.</p>
-            <div class="actions">
-              <a class="btn btn-primary" href="https://apps.apple.com/app/id6814730604">Get Toll on the App Store</a>
-              <a class="btn btn-secondary" href="#how">See how it works</a>
-            </div>
-            <ul class="meta">
-              <li>iPhone</li>
-              <li>iOS 26.1 or later</li>
-              <li>7 days free, then $29.99 a year</li>
-            </ul>
-          </div>
-          <div class="hero-phones">
-            <img class="phone" src="assets/screens/unlock.webp" srcset="assets/screens/unlock.webp 600w, assets/screens/unlock-840.webp 840w" sizes="(max-width: 899px) 280px, 300px" width="600" height="1251" fetchpriority="high" alt="Toll's camera in a gym: a photo of dumbbell racks, a spin bike and a weight bench, marked Done and checked on this iPhone, the photo not kept. Counted. Your apps unlock now. A black button: Unlock your apps.">
-          </div>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-field" aria-hidden="true"></div>
+      <div class="wrap hero-copy">
+        <p class="chip rise" style="--d:0"><span class="chip-dot" aria-hidden="true"></span>Photos checked on your iPhone, never kept</p>
+        <h1 id="hero-title" class="display two-tone rise" style="--d:1"><span>Locks your apps</span> <span>until you do your habit.</span></h1>
+        <p class="lede rise" style="--d:2">Toll locks the apps you scroll too much. Prove your habit with the camera (a workout, your desk, a book, a walk) and they open again. Most screen time limits have an ignore button. Toll doesn't.</p>
+        <div class="hero-actions rise" style="--d:3">
+          <a class="store-badge" href="https://apps.apple.com/app/id6814730604"><img src="assets/app-store-badge.svg" width="144" height="48" alt="Download on the App Store"></a>
+          <a class="btn btn-glass" href="#how">See how it works</a>
         </div>
+        <p class="meta rise" style="--d:4">iPhone · iOS 26.1 or later · 7 days free, then $29.99 a year</p>
+      </div>
+      <div class="hero-phone rise" style="--d:5">
+        <img class="phone" src="assets/screens/unlock.webp" srcset="assets/screens/unlock.webp 600w, assets/screens/unlock-840.webp 840w" sizes="(max-width: 639px) 280px, 320px" width="600" height="1251" fetchpriority="high" alt="Toll's camera in a gym: a photo of dumbbell racks, a spin bike and a weight bench, marked Done and checked on this iPhone, the photo not kept. Counted. Your apps unlock now. A black button: Unlock your apps.">
       </div>
     </section>
 
-    <section class="section" aria-labelledby="ignore-title">
+    <section class="section story" id="how" aria-labelledby="how-title">
       <div class="wrap">
-        <div class="card versus">
-          <img class="phone" src="assets/screens/shield.webp" srcset="assets/screens/shield.webp 600w, assets/screens/shield-840.webp 840w" sizes="280px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's block screen over a locked app: the Toll lock, Instagram is locked. Gym is still due today. Open Toll to prove it. Two buttons: Close and Open Toll.">
-          <div class="versus-copy">
-            <h2 id="ignore-title" class="title two-tone"><span>No ignore button.</span> <span>Prove it instead.</span></h2>
-            <p class="lede">The usual screen time limit is one tap away from "ignore for today". Toll's block screen has two buttons: Close, and Open Toll to prove your habit.</p>
-            <ul class="compare">
-              <li class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>No snooze, no "five more minutes", no limit you can tap past.</span></li>
-              <li class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Prove today's habit and your apps unlock for the rest of the day. Schedules, daily limits and focus sessions you set still apply.</span></li>
-              <li class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Live camera only. Checked on your iPhone, never stored or uploaded.</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="how" aria-labelledby="how-title">
-      <div class="wrap">
-        <div class="head center">
+        <div class="head center reveal">
           <h2 id="how-title" class="title two-tone"><span>Pick the apps. Pick the habit.</span> <span>Take the photo.</span></h2>
           <p class="lede">No honor system: do the habit, then show it to the camera.</p>
         </div>
-        <ol class="steps">
-          <li class="card step">
-            <img class="phone" src="assets/screens/habits.webp" srcset="assets/screens/habits.webp 600w, assets/screens/habits-840.webp 840w" sizes="240px" width="600" height="1251" loading="lazy" decoding="async" alt="What will you prove? Pick one or more: Gym, Study, Read, Run, Outside, Meals, Walk the dog and Journal, each with what its photo shows.">
-            <div class="step-text">
-              <span class="step-num" aria-hidden="true">1</span>
-              <h3><span class="sr">Step 1: </span>Pick the apps and the habit</h3>
-              <p class="quiet">Toll locks the apps you pick with Apple's Screen Time; everything else stays open. Then pick the habit, from the gym to a walk with the dog.</p>
+        <div class="story-grid">
+          <ol class="story-steps">
+            <li class="story-step">
+              <img class="phone step-phone" src="assets/screens/habits.webp" srcset="assets/screens/habits.webp 600w, assets/screens/habits-840.webp 840w" sizes="280px" width="600" height="1251" loading="lazy" decoding="async" alt="What will you prove? Pick one or more: Gym, Study, Read, Run, Outside, Meals, Walk the dog and Journal, each with what its photo shows.">
+              <div class="step-text">
+                <p class="step-num"><span class="sr">Step </span>01</p>
+                <h3 class="heading">Pick the apps and the habit</h3>
+                <p>Toll locks the apps you pick with Apple's Screen Time; everything else stays open. Then pick the habit, from the gym to a walk with the dog.</p>
+              </div>
+            </li>
+            <li class="story-step">
+              <img class="phone step-phone" src="assets/screens/shield.webp" srcset="assets/screens/shield.webp 600w, assets/screens/shield-840.webp 840w" sizes="280px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's block screen over a locked app: the Toll lock, Instagram is locked. Gym is still due today. Open Toll to prove it. Two buttons: Close and Open Toll.">
+              <div class="step-text">
+                <p class="step-num"><span class="sr">Step </span>02</p>
+                <h3 class="heading">Miss it, and they lock</h3>
+                <p>The block screen has two buttons: Close, and Open Toll to prove your habit. No snooze, no "five more minutes", no limit you can tap past.</p>
+              </div>
+            </li>
+            <li class="story-step">
+              <img class="phone step-phone" src="assets/screens/checkin.webp" srcset="assets/screens/checkin.webp 600w, assets/screens/checkin-840.webp 840w" sizes="280px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's camera in a gym: a photo of a power rack over a row of spin bikes, Checked in, checked on this iPhone, the photo not kept. Counted. Check out after 10:14 AM to finish.">
+              <div class="step-text">
+                <p class="step-num"><span class="sr">Step </span>03</p>
+                <h3 class="heading">Take the photo</h3>
+                <p>With Toll's camera, by midnight. Your iPhone checks it and Toll never keeps it. The gym takes a check-in and a check-out, at least 30 minutes apart.</p>
+              </div>
+            </li>
+            <li class="story-step">
+              <img class="phone step-phone" src="assets/screens/home.webp" srcset="assets/screens/home.webp 600w, assets/screens/home-840.webp 840w" sizes="280px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's Today page: a 14-day streak, a score of 100, Your apps are unlocked today, a photo of Meals at 2 of 3 plates by midnight, the week strip with every day kept, and Prove Meals in the bar at the bottom.">
+              <div class="step-text">
+                <p class="step-num"><span class="sr">Step </span>04</p>
+                <h3 class="heading">Your apps stay unlocked</h3>
+                <p>Once today's habit is proved, they stay unlocked for the rest of the day and your streak grows by one. Schedules, daily limits and sessions you set still apply.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="story-stage" aria-hidden="true">
+            <div class="stage-phone">
+              <img class="phone s1" src="assets/screens/habits.webp" srcset="assets/screens/habits.webp 600w, assets/screens/habits-840.webp 840w" sizes="300px" width="600" height="1251" loading="lazy" decoding="async" alt="">
+              <img class="phone s2" src="assets/screens/shield.webp" srcset="assets/screens/shield.webp 600w, assets/screens/shield-840.webp 840w" sizes="300px" width="600" height="1251" loading="lazy" decoding="async" alt="">
+              <img class="phone s3" src="assets/screens/checkin.webp" srcset="assets/screens/checkin.webp 600w, assets/screens/checkin-840.webp 840w" sizes="300px" width="600" height="1251" loading="lazy" decoding="async" alt="">
+              <img class="phone s4" src="assets/screens/home.webp" srcset="assets/screens/home.webp 600w, assets/screens/home-840.webp 840w" sizes="300px" width="600" height="1251" loading="lazy" decoding="async" alt="">
             </div>
-          </li>
-          <li class="card step">
-            <img class="phone" src="assets/screens/checkin.webp" srcset="assets/screens/checkin.webp 600w, assets/screens/checkin-840.webp 840w" sizes="240px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's camera in the same gym: a photo of a power rack over a row of spin bikes, Checked in, checked on this iPhone, the photo not kept. Counted. Check out after 10:14 AM to finish.">
-            <div class="step-text">
-              <span class="step-num" aria-hidden="true">2</span>
-              <h3><span class="sr">Step 2: </span>Take the photo</h3>
-              <p class="quiet">With Toll's camera, by midnight. Your iPhone checks it and Toll never keeps it. The gym takes a check-in and a check-out, at least 30 minutes apart.</p>
-            </div>
-          </li>
-          <li class="card step">
-            <img class="phone" src="assets/screens/home.webp" srcset="assets/screens/home.webp 600w, assets/screens/home-840.webp 840w" sizes="240px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll's Today page: a 14-day streak, a score of 100, Your apps are unlocked today, a photo of Meals at 2 of 3 plates by midnight, the week strip with every day kept, and Prove Meals in the bar at the bottom.">
-            <div class="step-text">
-              <span class="step-num" aria-hidden="true">3</span>
-              <h3><span class="sr">Step 3: </span>Your apps stay unlocked</h3>
-              <p class="quiet">Once today's habit is proved, they stay unlocked for the rest of the day and your streak grows by one. Schedules, daily limits and sessions you set still apply.</p>
-            </div>
-          </li>
-        </ol>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="rules-title">
-      <div class="wrap rules-grid">
-        <div>
-          <div class="head">
-            <h2 id="rules-title" class="title two-tone"><span>Miss a day,</span> <span>and the next one starts locked.</span></h2>
-            <p class="lede">Until you prove the habit. While your apps are locked you can't talk your way out: making a habit easier waits until midnight, and with Strict mode on, so does removing apps. Or lock them every morning until that day's proof.</p>
-          </div>
-          <ul class="rule-list">
-            <li class="card rule"><h3>You pick the apps</h3><p>Everything else stays open: calls, Messages, your work apps. An Always open list keeps any app open, even inside a category you locked.</p></li>
-            <li class="card rule"><p class="big tabular">2</p><h3>Rest days a month</h3><p>A rest day covers today or tomorrow. Nothing is due, and the streak keeps.</p></li>
-            <li class="card rule"><p class="big tabular">2</p><h3>Short breaks a day</h3><p>5 to 15 minutes each, at least an hour apart.</p></li>
-            <li class="card rule"><h3>Delete Toll, and every lock lifts</h3><p>Or turn off its Screen Time access. The one exception is Strict mode, if you turn it on yourself.</p></li>
-          </ul>
+    <section class="section" id="rules" aria-labelledby="rules-title">
+      <div class="wrap">
+        <div class="head reveal">
+          <h2 id="rules-title" class="title two-tone"><span>Miss a day,</span> <span>and the next one starts locked.</span></h2>
+          <p class="lede">Until you prove the habit. While your apps are locked you can't talk your way out: making a habit easier waits until midnight, and with Strict mode on, so does removing apps. Or lock them every morning until that day's proof.</p>
         </div>
-        <img class="phone" src="assets/screens/restday.webp" srcset="assets/screens/restday.webp 600w, assets/screens/restday-840.webp 840w" sizes="270px" width="600" height="1251" loading="lazy" decoding="async" alt="The rest day sheet in Toll: One rest day, 2 of 2 rest days left this month. A rest day covers one day. Nothing is due, and your streak keeps. Today until midnight or Tomorrow all day, and Hold to take a rest day.">
+        <ul class="rows">
+          <li class="row reveal"><h3 class="heading">You pick the apps</h3><p>Only the apps you pick lock. Leave out Phone and Messages and they stay open. An Always open list keeps any app open, even inside a category you locked.</p></li>
+          <li class="row reveal"><h3 class="heading"><span class="num">2</span> rest days a month</h3><p>A rest day covers today or tomorrow. Nothing is due, and the streak keeps.</p></li>
+          <li class="row reveal"><h3 class="heading"><span class="num">2</span> short breaks a day</h3><p>5 to 15 minutes each, at least an hour apart.</p></li>
+          <li class="row reveal"><h3 class="heading">Delete Toll, and every lock lifts</h3><p>Or turn off its Screen Time access. The one exception is Strict mode, if you turn it on yourself.</p></li>
+        </ul>
+        <div class="link-cards">
+          <a class="glass-card link-card reveal" href="support/">
+            <span><span class="label">Support</span><b>Every rule, in plain answers</b></span>
+            <span class="circle-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 20 20"><path d="M4 10h11M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="glass-card link-card reveal" href="privacy/">
+            <span><span class="label">Privacy</span><b>What Toll keeps, and what it never does</b></span>
+            <span class="circle-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 20 20"><path d="M4 10h11M10.5 5.5 15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="head reveal">
+          <h2 id="features-title" class="title two-tone"><span>Strict when you want it.</span> <span>Calm when you don't.</span></h2>
+          <p class="lede">Schedules, limits and sessions that lock apps by themselves, and a score that shows how you're doing.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="card feature reveal">
+            <div class="feature-well"><img class="phone" src="assets/screens/schedule.webp" srcset="assets/screens/schedule.webp 600w, assets/screens/schedule-840.webp 840w" sizes="(max-width: 759px) 240px, 280px" width="600" height="1251" loading="lazy" decoding="async" alt="A new schedule in Toll: Workday, from 9:00 AM to 5:00 PM, Monday to Friday. Your apps lock from 9:00 AM to 5:00 PM on weekdays. They unlock by themselves after."></div>
+            <div class="feature-text">
+              <p class="label">Schedules and limits</p>
+              <h3 class="heading">9 to 5, the night, or 45 minutes a day</h3>
+              <p>Lock apps on a schedule, or once they've had their minutes for the day. No photo needed; they unlock by themselves.</p>
+            </div>
+          </article>
+          <article class="card feature reveal">
+            <div class="feature-well"><img class="phone" src="assets/screens/sessions.webp" srcset="assets/screens/sessions.webp 600w, assets/screens/sessions-840.webp 840w" sizes="(max-width: 759px) 240px, 280px" width="600" height="1251" loading="lazy" decoding="async" alt="Sessions in Toll: 25:00 on a dial of minutes and a Start button, Moments such as Heads down for 50 minutes and At the table for 45, and this week's 2 sessions, 2 hours 15 minutes of focus."></div>
+            <div class="feature-text">
+              <p class="label">Focus sessions</p>
+              <h3 class="heading">15 minutes to 3 hours, locked</h3>
+              <p>Photo or not. Your apps unlock by themselves at the end; ending early takes a deliberate hold.</p>
+            </div>
+          </article>
+          <article class="card feature reveal">
+            <div class="feature-well"><img class="phone" src="assets/screens/score.webp" srcset="assets/screens/score.webp 600w, assets/screens/score-840.webp 840w" sizes="(max-width: 759px) 240px, 280px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll Score in Toll: 100, with 3 of 4 habits today and 27 of 27 kept over the last 7 days, a Prove button for the plate Meals still needs, and how the score works."></div>
+            <div class="feature-text">
+              <p class="label">Toll Score</p>
+              <h3 class="heading">Out of 100, over seven days</h3>
+              <p>The share of your habits kept over the last seven days. Rest days and paused habits don't count.</p>
+            </div>
+          </article>
+          <article class="card feature reveal">
+            <div class="feature-well"><img class="phone" src="assets/screens/blockscreens.webp" srcset="assets/screens/blockscreens.webp 600w, assets/screens/blockscreens-840.webp 840w" sizes="(max-width: 759px) 240px, 280px" width="600" height="1251" loading="lazy" decoding="async" alt="The Block screen page in Toll: a preview, Locked until you send your photo, with your own reason quoted, then the words to choose from: Just the basics, Your reason, Short poems, Did you know, The Gospels, The Quran."></div>
+            <div class="feature-text">
+              <p class="label">The block screen</p>
+              <h3 class="heading">Why it's locked, and a line you choose</h3>
+              <p>When it unlocks, and your own reason, a short poem, the Gospels, the Quran and more.</p>
+            </div>
+          </article>
+        </div>
+        <ul class="notes">
+          <li class="reveal"><h3>PIN lock</h3><p>A PIN only before something that loosens your rules. Never to prove a habit, and a forgotten PIN lifts after 24 hours.</p><p class="off">Off until you turn it on.</p></li>
+          <li class="reveal"><h3>Strict mode</h3><p>While your apps are locked, iOS blocks deleting Toll and your apps, keeps the date and time automatic, and sessions run to the end. It ends the moment your apps unlock.</p><p class="off">Off until you turn it on.</p></li>
+          <li class="reveal"><h3>Website protection</h3><p>Adult websites filtered all the time, and every website blocked while your apps are locked. Toll never learns which sites you visit.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="plans" aria-labelledby="plans-title">
+      <div class="wrap">
+        <div class="head center reveal">
+          <h2 id="plans-title" class="title two-tone"><span>One plan, all of it.</span> <span>7 days free on the yearly plan.</span></h2>
+          <p class="lede">Toll Pro is all of Toll. You pick a plan in Toll, after four short screens.</p>
+        </div>
+        <div class="plans">
+          <article class="card plan featured reveal">
+            <h3>Yearly</h3>
+            <p class="amount"><span class="num">$29.99</span> a year</p>
+            <p class="plan-note">7 days free first, once per Apple Account. About $2.49 a month.</p>
+            <a class="btn btn-primary" href="https://apps.apple.com/app/id6814730604">Get Toll</a>
+          </article>
+          <article class="card plan reveal">
+            <h3>Monthly</h3>
+            <p class="amount"><span class="num">$5.99</span> a month</p>
+            <p class="plan-note">No free week.</p>
+            <a class="btn btn-white" href="https://apps.apple.com/app/id6814730604">Get Toll</a>
+          </article>
+          <article class="card plan reveal">
+            <h3>Lifetime</h3>
+            <p class="amount"><span class="num">$79.99</span> once</p>
+            <p class="plan-note">Pay once. No subscription.</p>
+            <a class="btn btn-white" href="https://apps.apple.com/app/id6814730604">Get Toll</a>
+          </article>
+        </div>
+        <div class="card included reveal">
+          <h3>Every plan is all of Toll</h3>
+          <ul class="checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Every habit, your own included</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Schedules and time limits</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Strict mode and the PIN lock</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Locked every morning, if you choose</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Website protection</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Focus sessions, rest days, short breaks and the score</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Every block screen, the Gospels and the Quran too</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>No account and no ads. Photos are never kept.</span></li>
+          </ul>
+          <p class="small">US prices; the App Store shows yours. One free week per Apple Account, on the yearly plan, with a reminder 2 days before the first charge. When Toll Pro ends, your Pro rules pause (up to 3 days later if your iPhone is offline) and your habits are kept until it's back. Nothing is deleted. On the free plan from before version 1.2? You keep it, with its one habit.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="private" aria-labelledby="private-title">
+      <div class="wrap">
+        <div class="head reveal">
+          <h2 id="private-title" class="title two-tone"><span>Private by design.</span> <span>Nothing to sign up for.</span></h2>
+          <p class="lede">Toll has no account and no server of its own. What it keeps stays with you.</p>
+        </div>
+        <ul class="rows">
+          <li class="row reveal"><h3 class="heading">Photos never leave your iPhone</h3><p>Each photo is checked on your iPhone, then discarded. Never stored, never uploaded.</p></li>
+          <li class="row reveal"><h3 class="heading">No account, no login</h3><p>Your habits and records live on your iPhone and in your own iCloud, so they follow you to a new phone.</p></li>
+          <li class="row reveal"><h3 class="heading">No ads, no trackers</h3><p>Only anonymous usage counts, never who you are. Toll does not track you and does not sell anything.</p></li>
+          <li class="row reveal"><h3 class="heading">What Toll never does</h3><p>Hide your apps (it locks them; they stay on your Home Screen). Ask for the PIN to prove a habit or to open Toll. Send a notification you cannot turn off. Keep a lock once Toll is deleted.</p></li>
+        </ul>
+        <p class="small after-rows">The details are in the <a class="link" href="privacy/">privacy policy</a>.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="why-title">
       <div class="wrap">
-        <figure class="card founder">
+        <figure class="founder reveal">
           <h2 id="why-title" class="label">Why I built it</h2>
           <blockquote><p>I kept skipping the gym and struggled to stick to eating well, so I built Toll for myself first.</p></blockquote>
           <figcaption>Charbel, the developer</figcaption>
@@ -142,153 +275,76 @@
       </div>
     </section>
 
-    <section class="section" id="features" aria-labelledby="features-title">
-      <div class="wrap">
-        <div class="head">
-          <h2 id="features-title" class="title two-tone"><span>Strict when you want it.</span> <span>Calm when you don't.</span></h2>
-          <p class="lede">Schedules, limits and sessions that lock apps by themselves, and a score that shows how you're doing.</p>
+    <section class="section" id="questions" aria-labelledby="questions-title">
+      <div class="wrap faq-layout">
+        <div class="faq-side">
+          <h2 id="questions-title" class="title-2 two-tone"><span>Questions.</span> <span>Plain answers.</span></h2>
+          <p class="muted">Still have a question? <a class="link" href="mailto:csamaha655@gmail.com?subject=Toll">Write to us</a>, or read the <a class="link" href="support/">support page</a>.</p>
         </div>
-        <div class="gallery">
-          <article class="card feature">
-            <img class="phone" src="assets/screens/schedule.webp" srcset="assets/screens/schedule.webp 600w, assets/screens/schedule-840.webp 840w" sizes="210px" width="600" height="1251" loading="lazy" decoding="async" alt="A new schedule in Toll: Workday, from 9:00 AM to 5:00 PM, Monday to Friday. Your apps lock from 9:00 AM to 5:00 PM on weekdays. They unlock by themselves after.">
-            <div class="feature-text">
-              <h3>Schedules and limits</h3>
-              <p>Lock apps on a schedule, or once they've had their minutes for the day. No photo needed; they unlock by themselves.</p>
-              <div class="figures">
-                <p><b>9 to 5</b>A workday, the days you pick</p>
-                <p><b>10 PM</b>The night, until the morning</p>
-                <p><b>45m</b>A day in the apps, then locked until midnight</p>
-              </div>
-            </div>
-          </article>
-          <article class="card feature">
-            <img class="phone" src="assets/screens/sessions.webp" srcset="assets/screens/sessions.webp 600w, assets/screens/sessions-840.webp 840w" sizes="210px" width="600" height="1251" loading="lazy" decoding="async" alt="Sessions in Toll: 25:00 on a dial of minutes and a Start button, Moments such as Heads down for 50 minutes and At the table for 45, and this week's 2 sessions, 2 hours 15 minutes of focus.">
-            <div class="feature-text">
-              <h3>Focus sessions</h3>
-              <p>Lock your apps for 15 minutes to 3 hours, photo or not. They unlock by themselves; ending early takes a deliberate hold.</p>
-            </div>
-          </article>
-          <article class="card feature">
-            <img class="phone" src="assets/screens/score.webp" srcset="assets/screens/score.webp 600w, assets/screens/score-840.webp 840w" sizes="210px" width="600" height="1251" loading="lazy" decoding="async" alt="Toll Score in Toll: 100, with 3 of 4 habits today and 27 of 27 kept over the last 7 days, a Prove button for the plate Meals still needs, and how the score works.">
-            <div class="feature-text">
-              <h3>Toll Score</h3>
-              <p>Out of 100: the share of your habits kept over the last seven days. Rest days and paused habits don't count.</p>
-            </div>
-          </article>
-          <article class="card feature">
-            <img class="phone" src="assets/screens/blockscreens.webp" srcset="assets/screens/blockscreens.webp 600w, assets/screens/blockscreens-840.webp 840w" sizes="210px" width="600" height="1251" loading="lazy" decoding="async" alt="The Block screen page in Toll: a preview, Locked until you send your photo, with your own reason quoted, then the words to choose from: Just the basics, Your reason, Short poems, Did you know, The Gospels, The Quran.">
-            <div class="feature-text">
-              <h3>The block screen</h3>
-              <p>What you see when you open a locked app: why it's locked, when it unlocks, and a line you choose: your own reason, a short poem, the Gospels, the Quran and more.</p>
-            </div>
-          </article>
-        </div>
-        <div class="notes">
-          <article class="card note">
-            <h3>PIN lock</h3>
-            <p>A PIN only before something that loosens your rules. Never to prove a habit, and a forgotten PIN lifts after 24 hours.</p>
-            <p class="off">Off until you turn it on.</p>
-          </article>
-          <article class="card note">
-            <h3>Strict mode</h3>
-            <p>While your apps are locked, iOS blocks deleting Toll and your apps, keeps the date and time automatic, and sessions run to the end. It ends the moment your apps unlock.</p>
-            <p class="off">Off until you turn it on.</p>
-          </article>
-          <article class="card note">
-            <h3>Website protection</h3>
-            <p>Adult websites filtered all the time, and every website blocked while your apps are locked. Toll never learns which sites you visit.</p>
-          </article>
+        <div class="faq">
+          <details>
+            <summary>Doesn't my iPhone already do this?<i aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1.5v11M1.5 7h11"/></svg></i></summary>
+            <div><p>Screen Time's own limits come with Ignore Limit: one more minute, or the rest of the day. Toll uses Screen Time to lock the apps, but its block screen has no such button: Close, or Open Toll to take the photo.</p></div>
+          </details>
+          <details>
+            <summary>How does Toll check the photo?<i aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1.5v11M1.5 7h11"/></svg></i></summary>
+            <div><p>With Toll's own camera, live only: there is no photo library, so an old photo can't count. Your iPhone checks that the photo shows the habit, with Apple's on-device model on iPhones with Apple Intelligence and Apple's on-device image analysis on others. Then the photo is discarded.</p><p>The gym takes a check-in and a check-out at least 30 minutes apart, meals one photo per meal, study one photo of your desk with a laptop, book or notes.</p></div>
+          </details>
+          <details>
+            <summary>When do my apps lock?<i aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1.5v11M1.5 7h11"/></svg></i></summary>
+            <div><p>After a missed day: take each day's photos by midnight and the next day starts unlocked; miss one, and the next day starts locked until that day's habits are done. A habit never locks anything on the day it was made. To lock every morning until that day's photo instead: Settings, When apps lock, Every morning.</p><p>Schedules lock between their times, time limits once their minutes are used, and sessions until they end.</p></div>
+          </details>
+          <details>
+            <summary>Can I take a day off?<i aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1.5v11M1.5 7h11"/></svg></i></summary>
+            <div><p>Two rest days a month. A rest day covers one day: nothing is due and the streak keeps. For a few minutes instead, take a short break: up to two a day, 5 to 15 minutes each, at least an hour apart (not while Strict mode holds your apps).</p></div>
+          </details>
+          <details>
+            <summary>What happens to my photos and data?<i aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1.5v11M1.5 7h11"/></svg></i></summary>
+            <div><p>Photos are checked on your iPhone and never stored or uploaded. Your habits and records stay on your iPhone and in your own iCloud. Toll has no account, no ads and no trackers; it sends anonymous usage counts, never who you are. The <a class="link" href="privacy/">privacy policy</a> lists every count.</p></div>
+          </details>
+          <details>
+            <summary>What happens if I delete Toll?<i aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1.5v11M1.5 7h11"/></svg></i></summary>
+            <div><p>Every lock goes with it. With Strict mode on, iOS lets you delete apps only while they're unlocked. With iCloud on, your habits, rules and photo records come back when you install Toll again; you pick the apps to lock again.</p></div>
+          </details>
+          <details>
+            <summary>How do I cancel?<i aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1.5v11M1.5 7h11"/></svg></i></summary>
+            <div><p>Open the Settings app, tap your name, then Subscriptions, then Toll. During the yearly plan's free week, Toll reminds you 2 days before the first charge. Cancel at least 24 hours before the period ends to avoid the next charge.</p></div>
+          </details>
         </div>
       </div>
     </section>
 
-    <section class="section" id="plans" aria-labelledby="plans-title">
-      <div class="wrap">
-        <div class="head">
-          <h2 id="plans-title" class="title two-tone"><span>One plan, all of it.</span> <span>7 days free on the yearly plan.</span></h2>
-          <p class="lede">Toll Pro is all of Toll. Pick a plan in Toll, after four short screens.</p>
+    <section class="final" aria-labelledby="final-title">
+      <div class="wrap final-inner">
+        <div class="fan" aria-hidden="true">
+          <img class="phone f1" src="assets/screens/sessions.webp" srcset="assets/screens/sessions.webp 600w, assets/screens/sessions-840.webp 840w" sizes="220px" width="600" height="1251" loading="lazy" decoding="async" alt="">
+          <img class="phone f3" src="assets/screens/score.webp" srcset="assets/screens/score.webp 600w, assets/screens/score-840.webp 840w" sizes="220px" width="600" height="1251" loading="lazy" decoding="async" alt="">
+          <img class="phone f2" src="assets/screens/home.webp" srcset="assets/screens/home.webp 600w, assets/screens/home-840.webp 840w" sizes="240px" width="600" height="1251" loading="lazy" decoding="async" alt="">
         </div>
-        <div class="plans">
-          <article class="card plan">
-            <h3>Toll Pro</h3>
-            <ul class="checks">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Every habit, your own included</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Schedules and time limits</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Strict mode and the PIN lock</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Locked every morning, if you choose</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Website protection</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Focus sessions, rest days, short breaks and the score</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Every block screen, the Gospels and the Quran too</span></li>
-            </ul>
-            <p class="small">No account and no ads. Photos are never kept.</p>
-          </article>
-          <article class="card plan">
-            <h3>Plans</h3>
-            <div class="prices">
-              <div class="price"><b>Yearly<span class="chip">7 days free</span></b><p class="amount">$29.99 a year</p><span>After the free week. About $2.49 a month.</span></div>
-              <div class="price"><b>Monthly</b><p class="amount">$5.99 a month</p><span>No free week.</span></div>
-              <div class="price"><b>Lifetime</b><p class="amount">$79.99 once</p><span>Pay once. No subscription.</span></div>
-            </div>
-            <p class="small">US prices; the App Store shows yours. One free week per Apple Account, on the yearly plan, with a reminder 2 days before the first charge. When Toll Pro ends, your Pro rules pause (up to 3 days later if your iPhone is offline) and your habits are kept until it's back. Nothing is deleted. On the free plan from before version 1.2? You keep it, with its one habit.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="private-title">
-      <div class="wrap">
-        <div class="head">
-          <h2 id="private-title" class="title two-tone"><span>Private by design.</span> <span>Nothing to sign up for.</span></h2>
-          <p class="lede">Toll has no account and no server of its own. What it keeps stays with you.</p>
-        </div>
-        <div class="private">
-          <article class="card"><h3>Photos never leave your iPhone</h3><p>Each photo is checked on your iPhone, then discarded. Never stored, never uploaded.</p></article>
-          <article class="card"><h3>No account, no login</h3><p>Your habits and records live on your iPhone and in your own iCloud, so they follow you to a new phone.</p></article>
-          <article class="card"><h3>No ads, no trackers</h3><p>Only anonymous usage counts, never who you are. Toll does not track you and does not sell anything.</p></article>
-        </div>
-        <div class="card never">
-          <h3>What Toll never does</h3>
-          <ul>
-            <li><b>Hides your apps.</b> It locks them; they stay on your Home Screen.</li>
-            <li><b>Asks for the PIN</b> to prove a habit or to open Toll.</li>
-            <li><b>Sends a notification</b> you cannot turn off.</li>
-            <li><b>Keeps a lock</b> once Toll is deleted.</li>
-          </ul>
-        </div>
-        <p class="small" style="margin-top:16px">The details are in the <a class="link" href="privacy/">privacy policy</a>.</p>
-      </div>
-    </section>
-
-    <section class="get" id="get" aria-labelledby="get-title">
-      <div class="get-band on-peach">
-        <div class="wrap get-grid">
-          <img class="app-icon" src="assets/icon.webp" width="240" height="240" loading="lazy" decoding="async" alt="The Toll app icon: a black padlock whose keyhole is a T, on a peach tile.">
-          <div class="get-copy">
-            <h2 id="get-title" class="title two-tone"><span>Out now on the App Store.</span> <span>Start with 7 days free.</span></h2>
-            <div class="actions">
-              <a class="btn btn-primary" href="https://apps.apple.com/app/id6814730604">Get Toll on the App Store</a>
-              <a class="btn btn-secondary" href="mailto:csamaha655@gmail.com?subject=Toll">Write to us</a>
-            </div>
-            <ul class="meta">
-              <li>iPhone</li>
-              <li>iOS 26.1 or later</li>
-              <li>7 days free on the yearly plan</li>
-            </ul>
-          </div>
+        <div class="final-copy reveal">
+          <h2 id="final-title" class="title two-tone"><span>Ready to scroll less?</span> <span>Start with 7 days free.</span></h2>
+          <p class="lede">On the yearly plan, then $29.99 a year. Cancel any time in the Settings app.</p>
+          <a class="store-badge" href="https://apps.apple.com/app/id6814730604"><img src="assets/app-store-badge.svg" width="144" height="48" loading="lazy" alt="Download on the App Store"></a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="foot">
-    <div class="wrap">
-      <span class="sign"><img src="assets/lockup.svg" width="222" height="100" alt="Toll">© 2026 Toll</span>
-      <nav aria-label="More">
-        <a href="support/">Support</a>
-        <a href="privacy/">Privacy</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+  <footer class="footer">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <img src="assets/lockup.svg" width="222" height="100" alt="Toll">
+        <p>Locks your apps until you do your habit.</p>
+        <a class="btn btn-primary btn-sm" href="https://apps.apple.com/app/id6814730604">Download</a>
+      </div>
+      <nav class="foot-cols" aria-label="More">
+        <div><p class="label">Toll</p><a href="#how">How it works</a><a href="#features">Features</a><a href="#plans">Plans</a><a href="#questions">Questions</a></div>
+        <div><p class="label">Help</p><a href="support/">Support</a><a href="mailto:csamaha655@gmail.com?subject=Toll">Write to us</a></div>
+        <div><p class="label">Legal</p><a href="privacy/">Privacy</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></div>
       </nav>
     </div>
+    <div class="wrap foot-row"><p>© 2026 Toll</p><p>iPhone · iOS 26.1 or later</p></div>
+    <div class="wordmark dot-matrix" aria-hidden="true">Toll</div>
   </footer>
 </body>
 </html>

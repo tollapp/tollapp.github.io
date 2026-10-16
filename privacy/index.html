@@ -1,34 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Privacy Policy · Toll</title>
   <meta name="description" content="What Toll does with your data. No account, no server of its own, photos checked on your iPhone and never stored.">
-  <meta name="theme-color" content="#F3F4F6">
+  <meta name="theme-color" content="#F7F8FA">
   <meta name="color-scheme" content="light">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/google-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to the policy</a>
 
-  <header class="top">
-    <div class="top-bar">
-      <a class="brand" href="../" aria-label="Toll, home"><img src="../assets/lockup.svg" width="222" height="100" alt=""></a>
-      <nav class="nav" aria-label="Pages">
-        <a class="wide" href="../#how">How it works</a>
-        <a class="wide" href="../#plans">Plans</a>
-        <a href="../support/">Support</a>
-        <a class="narrow-hide" href="./" aria-current="page">Privacy</a>
-        <a class="get-pill" href="https://apps.apple.com/app/id6814730604">Download</a>
-      </nav>
-    </div>
+  <div class="feather" aria-hidden="true"></div>
+  <header class="nav">
+    <a class="logo" href="../" aria-label="Toll, home"><img src="../assets/icon.webp" width="52" height="52" alt=""></a>
+    <button class="menu-pill glass-control" type="button" popovertarget="menu">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h12M4 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>Menu</span>
+    </button>
+    <a class="btn btn-primary btn-sm nav-get" href="https://apps.apple.com/app/id6814730604">Download</a>
   </header>
+  <div class="menu" id="menu" popover>
+    <button class="menu-close" type="button" popovertarget="menu" popovertargetaction="hide">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 5.5l9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>Close</span>
+    </button>
+    <nav class="menu-body" aria-label="Pages">
+      <div class="menu-group">
+        <p class="label item" style="--i:0">Toll</p>
+        <a class="item" style="--i:1" href="../#how">How it works</a>
+        <a class="item" style="--i:2" href="../#features">Features</a>
+        <a class="item" style="--i:3" href="../#plans">Plans</a>
+        <a class="item" style="--i:4" href="../#questions">Questions</a>
+      </div>
+      <div class="menu-group">
+        <p class="label item" style="--i:1">Help</p>
+        <a class="item" style="--i:2" href="../support/">Support</a>
+        <a class="item" style="--i:3" href="../privacy/" aria-current="page">Privacy</a>
+        <a class="item" style="--i:4" href="mailto:csamaha655@gmail.com?subject=Toll">Write to us</a>
+      </div>
+      <div class="menu-foot item" style="--i:5">
+        <a href="https://apps.apple.com/app/id6814730604">Download on the App Store</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+      </div>
+    </nav>
+  </div>
 
-  <main id="main">
+  <main id="main" class="page">
     <div class="wrap narrow">
       <div class="page-head">
         <p class="label">Updated 15 October 2026</p>
@@ -69,15 +92,21 @@
     </div>
   </main>
 
-  <footer class="foot">
-    <div class="wrap">
-      <span class="sign"><img src="../assets/lockup.svg" width="222" height="100" alt="Toll">© 2026 Toll</span>
-      <nav aria-label="More">
-        <a href="../support/">Support</a>
-        <a href="./">Privacy</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+  <footer class="footer">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <img src="../assets/lockup.svg" width="222" height="100" alt="Toll">
+        <p>Locks your apps until you do your habit.</p>
+        <a class="btn btn-primary btn-sm" href="https://apps.apple.com/app/id6814730604">Download</a>
+      </div>
+      <nav class="foot-cols" aria-label="More">
+        <div><p class="label">Toll</p><a href="../#how">How it works</a><a href="../#features">Features</a><a href="../#plans">Plans</a><a href="../#questions">Questions</a></div>
+        <div><p class="label">Help</p><a href="../support/">Support</a><a href="mailto:csamaha655@gmail.com?subject=Toll">Write to us</a></div>
+        <div><p class="label">Legal</p><a href="../privacy/">Privacy</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></div>
       </nav>
     </div>
+    <div class="wrap foot-row"><p>© 2026 Toll</p><p>iPhone · iOS 26.1 or later</p></div>
+    <div class="wordmark dot-matrix" aria-hidden="true">Toll</div>
   </footer>
 </body>
 </html>
