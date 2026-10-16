@@ -229,6 +229,16 @@ a:hover .arrow { transform: translateX(4px); }
 }
 @keyframes stage-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes stage-rise { from { transform: translateY(72px); } to { transform: none; } }
+@keyframes stage-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes stage-drift { to { background-position: 0 -252px, 9px -243px; } }
+@keyframes cap-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes cap-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(-14px); } }
+@keyframes cap-in-out { 0% { opacity: 0; transform: translateY(14px); } 20%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-14px); } }
+.stage-pin { position: relative; isolation: isolate; }
+.stage-phone .phone { position: absolute; inset: 0; --pw: 100%; }
+.stage-dots, .stage-progress, .stage-captions { display: none; }
+
+/* Desktop: the steps go by on the left, the phone stays on the right and shows each step's screen. */
 @supports (timeline-scope: --s1) and (animation-timeline: view()) {
   @media (min-width: 960px) and (prefers-reduced-motion: no-preference) {
     .story-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; timeline-scope: --s1, --s2, --s3, --s4; }
@@ -240,17 +250,64 @@ a:hover .arrow { transform: translateX(4px); }
     .story-step:nth-child(3) { view-timeline-name: --s3; }
     .story-step:nth-child(4) { view-timeline-name: --s4; }
     .story-stage { display: block; }
+    .stage-pin { --ph: min(625px, calc(100svh - 150px)); position: sticky; top: calc((100svh - var(--ph)) / 2 + 30px); }
     .stage-phone {
-      --ph: min(625px, calc(100svh - 150px));
-      position: sticky; top: calc((100svh - var(--ph)) / 2 + 30px);
-      width: calc(var(--ph) * 600 / 1251); height: var(--ph); margin-inline: auto;
+      position: relative; width: calc(var(--ph) * 600 / 1251); height: var(--ph); margin-inline: auto;
       animation: stage-rise linear both; animation-timeline: --s1; animation-range: entry 0% entry 60%;
     }
-    .stage-phone .phone { position: absolute; inset: 0; --pw: 100%; }
     .stage-phone .s2, .stage-phone .s3, .stage-phone .s4 { animation: stage-in linear both; animation-range: cover 33% cover 45%; }
     .stage-phone .s2 { animation-timeline: --s2; }
     .stage-phone .s3 { animation-timeline: --s3; }
     .stage-phone .s4 { animation-timeline: --s4; }
+  }
+}
+
+/* Phones: the phone is pinned to the screen while the story scrolls by underneath. Its screen
+   changes at each quarter of the scroll, the caption under it follows, the bar at the top fills
+   step by step, and the dots behind it move at their own pace (the depth). The steps' own text
+   stays in the page for screen readers; the pinned copy is hidden from them. */
+@supports (view-timeline-name: --a) and (animation-timeline: view()) {
+  @media (max-width: 959px) and (prefers-reduced-motion: no-preference) {
+    .story .head { margin-bottom: 0; }
+    .story-grid { display: grid; view-timeline-name: --story; }
+    .story-steps, .story-stage { grid-area: 1 / 1; }
+    .story-steps { gap: 0; max-width: none; margin: 0; }
+    .story-step { height: 80svh; }
+    .story-step .step-phone { display: none; }
+    .story-step .step-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .story-stage { display: block; }
+    .stage-pin {
+      position: sticky; top: 0; height: 100svh;
+      display: grid; grid-template-rows: auto minmax(0, 1fr) auto; justify-items: center; gap: 18px;
+      padding: calc(env(safe-area-inset-top, 0px) + 84px) 0 calc(env(safe-area-inset-bottom, 0px) + 20px);
+    }
+    .stage-dots {
+      display: block; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background-image: radial-gradient(circle at center, var(--dot-a) 1px, transparent 1.4px), radial-gradient(circle at center, var(--dot-b) 1px, transparent 1.4px);
+      background-size: 18px 18px, 18px 18px; background-position: 0 0, 9px 9px; opacity: .42;
+      -webkit-mask-image: radial-gradient(72% 46% at 50% 44%, #000 0%, transparent 100%); mask-image: radial-gradient(72% 46% at 50% 44%, #000 0%, transparent 100%);
+      animation: stage-drift linear both; animation-timeline: --story; animation-range: cover 0% cover 100%;
+    }
+    .stage-progress { display: flex; gap: 6px; width: min(220px, 58vw); }
+    .stage-progress span { flex: 1; height: 3px; border-radius: 3px; background: var(--hairline); overflow: hidden; }
+    .stage-progress i { display: block; height: 100%; background: var(--ink); transform-origin: left center; animation: stage-fill linear both; animation-timeline: --story; }
+    .stage-progress span:nth-child(1) i { animation-range: contain 0% contain 25%; }
+    .stage-progress span:nth-child(2) i { animation-range: contain 25% contain 50%; }
+    .stage-progress span:nth-child(3) i { animation-range: contain 50% contain 75%; }
+    .stage-progress span:nth-child(4) i { animation-range: contain 75% contain 100%; }
+    .stage-phone { position: relative; height: 100%; max-width: 72vw; aspect-ratio: 600 / 1251; animation: stage-rise linear both; animation-timeline: --story; animation-range: entry 0% entry 70%; }
+    .stage-phone .s2, .stage-phone .s3, .stage-phone .s4 { animation: stage-in linear both; animation-timeline: --story; }
+    .stage-phone .s2 { animation-range: contain 22% contain 28%; }
+    .stage-phone .s3 { animation-range: contain 47% contain 53%; }
+    .stage-phone .s4 { animation-range: contain 72% contain 78%; }
+    .stage-captions { display: grid; width: min(100% - 2 * var(--gutter), 460px); min-height: 150px; }
+    .stage-cap { grid-area: 1 / 1; display: grid; gap: 6px; align-content: start; justify-items: center; text-align: center; animation: linear both; animation-timeline: --story; }
+    .stage-cap .heading { font-size: 22px; }
+    .stage-cap p:last-child { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+    .stage-cap.c1 { animation-name: cap-out; animation-range: contain 21% contain 27%; }
+    .stage-cap.c2 { animation-name: cap-in-out; animation-range: contain 23% contain 52%; }
+    .stage-cap.c3 { animation-name: cap-in-out; animation-range: contain 48% contain 77%; }
+    .stage-cap.c4 { animation-name: cap-in; animation-range: contain 73% contain 79%; }
   }
 }
 
